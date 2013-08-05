@@ -1,0 +1,2 @@
+<?php
+const INIT = true;
