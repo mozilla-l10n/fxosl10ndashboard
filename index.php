@@ -1,17 +1,6 @@
 <?php
 ob_start();
 
-$checkLogin = function($password) {
-    if (!isset($_POST['pass']) || $_POST['pass'] != $password) {
-        die('<form action="index.php" method="post">
-             <label for="pass">Password </label><input type="text" autofocus name="pass">
-             <input type="submit" name="ok">
-             </form>');
-    }
-};
-
-//~ $checkLogin('locales123');
-
 $getJsonArray = function($url) {
     return json_decode(file_get_contents($url), true);
 };
