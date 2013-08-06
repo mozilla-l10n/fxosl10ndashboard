@@ -5,7 +5,7 @@
 <title><?=$pageTitle?></title>
 <meta charset="utf-8">
 <link href="<?=$_SERVER['REQUEST_URI'] ?>media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
-<script src="/media/js/sorttable.js"></script>
+<script src="<?=$_SERVER['REQUEST_URI'] ?>media/js/sorttable.js"></script>
 </head>
 <body>
 <?=$content;?>
