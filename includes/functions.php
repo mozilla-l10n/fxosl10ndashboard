@@ -52,3 +52,18 @@ function getGaiaCompletion($gaia)
     return $temp;
 }
 
+
+function cacheUrl($url, $time = 600)
+{
+    $cache = CACHE . sha1($url) . '.cache';
+    if (is_file($cache)) {
+        $age = $_SERVER['REQUEST_TIME'] - filemtime($cache);
+        if ($age < $time) {
+            return $cache;
+        }
+    }
+
+    $file = file_get_contents($url);
+    file_put_contents($cache, $file);
+    return $cache;
+}
