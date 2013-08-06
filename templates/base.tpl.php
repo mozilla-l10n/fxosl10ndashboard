@@ -1,9 +1,9 @@
 <?php if (!defined('INIT')) die; ?>
-
+<!doctype html>
 <html>
 <head>
-<title>locales</title>
-
+<title><?=$pageTitle?></title>
+<meta charset="utf-8">
 <link href="/media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
 
 </head>
