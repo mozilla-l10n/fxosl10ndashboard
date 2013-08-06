@@ -1,6 +1,6 @@
 <?php
 const INIT  = true;
-const DEBUG = true;
+const DEBUG = false;
 
 $requestURL = function() {
     $result = $_SERVER['REQUEST_URI'];
@@ -22,6 +22,7 @@ define('CACHE', $cachePath);
 
 // Set debug environment
 if(DEBUG) {
+    error_reporting(E_ALL);
     ini_set("log_errors", 1);
     ini_set("error_log", "/tmp/fxoslocale-errors.log");
     error_log("---------------------------");
