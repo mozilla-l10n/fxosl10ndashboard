@@ -4,7 +4,7 @@ const DEBUG = true;
 
 $requestURL = function() {
     $result = $_SERVER['REQUEST_URI'];
-    $query = $_SERVER['QUERY_STRING'];
+    $query = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
     if (!empty($query)) {
         $result = str_replace('?' . $query, '', $result);
     }
