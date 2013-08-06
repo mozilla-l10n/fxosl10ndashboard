@@ -1,8 +1,6 @@
 <?php
 if (!defined('INIT')) die;
 
-
-
 $langchecker = 'http://l10n.mozilla-community.org/~pascalc/langchecker/';
 $gaia = $getJsonArray('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia')['items'];
 $gaiaStatus         = $getGaiaCompletion($gaia);

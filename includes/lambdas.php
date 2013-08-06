@@ -1,4 +1,5 @@
 <?php
+if (!defined('INIT')) die;
 
 $getJsonArray = function($url) {
     return json_decode(file_get_contents($url), true);

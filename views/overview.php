@@ -1,4 +1,5 @@
 <?php
+if (!defined('INIT')) die;
 
 foreach ($gaiaStatus as $key => $val) {
     if ($val >= 85) {
