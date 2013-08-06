@@ -1,6 +1,7 @@
 <?php
 if (!defined('INIT')) die;
 
+// Fetch external data source
 $langchecker        = 'http://l10n.mozilla-community.org/~pascalc/langchecker/';
 $gaia               = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia'))['items'];
 $gaiaStatus         = getGaiaCompletion($gaia);
@@ -10,6 +11,9 @@ $partners_site      = getJsonArray(cacheUrl($langchecker . '?locale=all&website=
 $consumers_site     = getJsonArray(cacheUrl($langchecker . '?locale=all&website=0&file=firefox/os/index.lang&json'))['firefox/os/index.lang'];
 $marketplace        = marketplaceStatus(cacheUrl('http://flod.org/pei/marketplace.json'));
 
+
+
+// Normalize our locale codes to display them coherently
 $tweakLocaleCode = function($code1, $code2) use (&$gaiaStatus, &$marketplace) {
     if (array_key_exists($code2, $gaiaStatus)) {
         $gaiaStatus[$code1] = $gaiaStatus[$code2];
@@ -27,8 +31,6 @@ $tweakLocaleCode('pt-BR', 'pt');
 $tweakLocaleCode('sr', 'sr-Cyrl');
 $tweakLocaleCode('pa-IN', 'pa');
 
-$gaia = array_keys($gaiaStatus);
-
 $temp_inprogress = $temp_done = [];
 
 foreach ($gaiaStatus as $key => $val) {
@@ -39,6 +41,7 @@ foreach ($gaiaStatus as $key => $val) {
     }
 }
 
+// This is the list of our projects
 $projects = [
     'Firefox_os' => [
         'requested'  => ['cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'tr'],
@@ -105,12 +108,9 @@ $projects = [
     ],
 ];
 
-$onmarket = [
-    'es-ES' => 'shipped',
-    'pl' => 'shipped',
-];
+$shipped = [ 'es-ES','pl'];
 
-
+// Based on the extracted data and the $projects array, determine our list of locales
 $locales = [];
 foreach (['requested', 'done', 'inprogress'] as $val1) {
     foreach ($projects as $key => $val2) {
@@ -118,11 +118,11 @@ foreach (['requested', 'done', 'inprogress'] as $val1) {
     }
 }
 
-$locales = array_merge($locales, $gaia);
+$locales = array_merge($locales, array_keys($gaiaStatus));
 $locales = array_unique($locales);
 sort($locales);
-$locale_status = function($locale) use ($onmarket) {
-    return in_array($locale, array_keys($onmarket))
-            ? $onmarket[$locale]
+$locale_status = function($locale, $shipped) {
+    return in_array($locale, $shipped)
+            ? 'shipped'
             : '';
 };

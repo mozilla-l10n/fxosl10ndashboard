@@ -1,7 +1,6 @@
 <?php
 if (!defined('INIT')) die;
 
-
 echo '<table>';
 echo '<tr>';
 echo '<th></th>';
@@ -94,7 +93,7 @@ foreach ($locales as $locale) {
     };
 
     echo '<tr>';
-    echo '<th class="' .  $locale_status($locale) . '">' . $locale . '</th>';
+    echo '<th class="' .  $locale_status($locale, $shipped) . '">' . $locale . '</th>';
     foreach ($projects as $key => $val) {
         echo $active($projects, $key);
     }
