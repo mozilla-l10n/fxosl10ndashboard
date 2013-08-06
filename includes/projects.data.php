@@ -504,7 +504,7 @@ $locales = array_merge($locales, array_keys($gaiaStatus));
 $locales = array_unique($locales);
 sort($locales);
 $locale_status = function($locale, $localeDetails) {
-    return in_array($locale, $localeDetails[$locale]['shipped'])
+    return ($localeDetails[$locale]['shipped'] == true)
             ? 'shipped'
             : '';
 };
