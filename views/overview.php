@@ -2,8 +2,20 @@
 if (!defined('INIT')) die;
 
 echo '<table  class="sortable">';
+echo '<caption>L10n Mini Dashboard for Firefox OS</caption>';
+echo '<tfoot>';
+echo '<tr class="owner">';
+echo '<th colspan="2">Owners -></th>';
+foreach ($projects as $key => $val) {
+        echo '<th>' .  $val['owners'] . '</th>';
+}
+echo '</tr>';
+echo '</tfoot>';
+
+echo '<thead>';
 echo '<tr>';
-echo '<th  class="sorttable_numeric">Priority</th><th>Locale</th>';
+echo '<th>Priority</th><th>Locale</th>';
+
 
 foreach ($projects as $key => $val) {
     $th = ($val['automated'] == true) ? '<th class="automated">' : '<th>';
@@ -16,11 +28,12 @@ foreach ($projects as $key => $val) {
         echo $th .  ucwords(str_replace('_', ' ', $key));
     }
 
-    echo '<span class="owner">' . $val['owners'] . '</span></th>';
+    echo '</th>';
 }
 
 echo '</tr>';
-
+echo '</thead>';
+echo '<tbody>';
 
 foreach ($locales as $locale) {
 
@@ -92,11 +105,12 @@ foreach ($locales as $locale) {
     };
 
     echo '<tr>';
-    echo '<th>' . $localesPriority[$locale] . '</th>';
-    echo '<th class="' .  $locale_status($locale, $shipped) . '">' . $locale . '</th>';
+    echo '<td>' . $localesPriority[$locale] . '</td>';
+    echo '<td class="' .  $locale_status($locale, $shipped) . '">' . $locale . '</td>';
     foreach ($projects as $key => $val) {
         echo $active($projects, $key);
     }
     echo '</tr>';
 }
+echo '<tbody>';
 echo '</table>';

@@ -4,6 +4,7 @@
 <head>
 <title><?=$pageTitle?></title>
 <meta charset="utf-8">
+<link href="<?=$_SERVER['REQUEST_URI'] ?>media/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="<?=$_SERVER['REQUEST_URI'] ?>media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="<?=$_SERVER['REQUEST_URI'] ?>media/js/sorttable.js"></script>
 </head>

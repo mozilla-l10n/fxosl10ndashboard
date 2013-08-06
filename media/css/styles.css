@@ -1,22 +1,18 @@
-body {
-  font-size:12px;
-}
-table, td, th {
-    border: 1px solid lightgray;
+table {
     border-collapse: collapse;
-    font-size:14px;
-    vertical-align:bottom;
-    font-weight: normal;
+}
+
+td, th {
+    border: 1px solid lightgray;
+    padding: 2px 1em;
 }
 
 td {
     text-align:right;
-    padding: 0px 4px;
 }
 
 th {
     text-align:center;
-    padding: 0px 4px;
 }
 
 .automated {
@@ -53,9 +49,7 @@ th {
 }
 
 .owner {
-    display: block;
     background-color: lightblue;
     text-align: center;
-    width: 100%;
-    margin: 0;
 }
+
