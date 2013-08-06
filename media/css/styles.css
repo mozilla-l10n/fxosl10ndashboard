@@ -1,24 +1,39 @@
-table {
+.base table {
     border-collapse: collapse;
+    border: 1px solid lightgray;
     margin:auto;
 }
 
-td, th {
+.base td,
+.base th {
     border: 1px solid lightgray;
     padding: 2px 1em;
 }
 
-td {
+.base td {
     text-align:right;
 }
 
-th {
+.sand th,
+.base th {
     text-align:center;
 }
 
-caption {
-    font-size:140%;
+.sand .table th,
+.sand .table td {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.base caption {
+    font-size: 160%;
     margin: 1em 0 0.5em 0;
+    text-align:center;
+}
+.sand caption {
+    font-size: 160%;
+    margin: 1em 0 1.5em 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 }
 
 table.floatL {
@@ -27,7 +42,7 @@ table.floatL {
 
 .automated {
 
-    background-color:rgb(220,220,220);
+    background-color:#F6F4EC;
 }
 
 .missing {
@@ -60,7 +75,7 @@ table.floatL {
 }
 
 .owner {
-    background-color: lightblue;
+    background-color: #D7D3C8;
     text-align: center;
 }
 

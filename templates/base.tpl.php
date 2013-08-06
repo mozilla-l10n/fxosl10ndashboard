@@ -8,7 +8,7 @@
 <link href="<?=$requestURL ?>media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="<?=$requestURL ?>media/js/sorttable.js"></script>
 </head>
-<body>
+<body class="base">
 <?=$content;?>
 <br>
 <table class="floatL">

@@ -1,7 +1,7 @@
 <?php
 if (!defined('INIT')) die;
 
-echo '<table  class="sortable">';
+echo '<table  class="table sortable">';
 echo '<caption>L10n Mini Dashboard for Firefox OS</caption>';
 echo '<thead>';
 echo '<tr>';

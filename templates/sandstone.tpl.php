@@ -14,18 +14,20 @@
 </head>
 <body class="sand">
     <div id="outer-wrapper">
-        <div id="content">
-            <header id="masthead"><a href="https://www.mozilla.org" id="tabzilla">Mozilla</a></header>
-            <?=$content;?>
-            <table>
-                <caption>Color codes</caption>
-                <tr><td class="done"></td><td>Done</td></tr>
-                <tr><td class="missing"></td><td>Missing</td></tr>
-                <tr><td class="inprogress"></td><td>In progress</td></tr>
-                <tr><td class="bonus"></td><td>Bonus locale</td></tr>
-                <tr><td class="shipped"></td><td>Locale shipped</td></tr>
-                <tr><td class="automated"></td><td>Project which data is automatically generated</td></tr>
-            </table>
+        <div id="wrapper">
+            <div id="content">
+                <header id="masthead"><a href="https://www.mozilla.org" id="tabzilla">Mozilla</a></header>
+                <?=$content;?>
+                <table class="table">
+                    <caption>Color codes</caption>
+                    <tr><td class="done"></td><td>Done</td></tr>
+                    <tr><td class="missing"></td><td>Missing</td></tr>
+                    <tr><td class="inprogress"></td><td>In progress</td></tr>
+                    <tr><td class="bonus"></td><td>Bonus locale</td></tr>
+                    <tr><td class="shipped"></td><td>Locale shipped</td></tr>
+                    <tr><td class="automated"></td><td>Project which data is automatically generated</td></tr>
+                </table>
+            </div>
         </div>
     </div>
 
