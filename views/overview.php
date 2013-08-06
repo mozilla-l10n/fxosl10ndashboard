@@ -1,19 +1,12 @@
 <?php
 if (!defined('INIT')) die;
 
-foreach ($gaiaStatus as $key => $val) {
-    if ($val >= 85) {
-        $temp_done[] = $key;
-    } elseif ($val >= 80) {
-        $temp_inprogress[] = $key;
-    }
-}
 
 echo '<table>';
 echo '<tr>';
 echo '<th></th>';
 
-foreach ($requested_automation as $key => $val) {
+foreach ($automated as $key => $val) {
     $th = ($val == true) ? '<th class="automated">' : '<th>';
 
     if ($key == 'Firefox_os') {

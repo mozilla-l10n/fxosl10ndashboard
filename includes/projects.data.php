@@ -28,7 +28,16 @@ $tweakLocaleCode('sr', 'sr-Cyrl');
 $tweakLocaleCode('pa-IN', 'pa');
 
 $gaia = array_keys($gaiaStatus);
+
 $temp_inprogress = $temp_done = [];
+
+foreach ($gaiaStatus as $key => $val) {
+    if ($val >= 85) {
+        $temp_done[] = $key;
+    } elseif ($val >= 80) {
+        $temp_inprogress[] = $key;
+    }
+}
 
 $requested = [
     // from https://l10n.mozilla.org/shipping/dashboard?tree=gaia
@@ -82,7 +91,7 @@ $onmarket = [
     'pl' => 'shipped',
 ];
 
-$requested_automation = [
+$automated = [
     'Firefox_os'        => true,
     'marketplace'       => true,
     'partners_site'     => true,
@@ -108,5 +117,3 @@ $locale_status = function($locale) use ($onmarket) {
             ? $onmarket[$locale]
             : '';
 };
-
-
