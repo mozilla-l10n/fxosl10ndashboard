@@ -11,7 +11,7 @@
 <body>
 <?=$content;?>
 <br>
-<table>
+<table class="floatL">
 <caption>Color codes</caption>
 <tr><td class="done"></td><td>Done</td></tr>
 <tr><td class="missing"></td><td>Missing</td></tr>

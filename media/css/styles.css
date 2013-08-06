@@ -1,5 +1,6 @@
 table {
     border-collapse: collapse;
+    margin:auto;
 }
 
 td, th {
@@ -15,7 +16,17 @@ th {
     text-align:center;
 }
 
+caption {
+    font-size:140%;
+    margin: 1em 0 0.5em 0;
+}
+
+table.floatL {
+    float:left;
+}
+
 .automated {
+
     background-color:rgb(220,220,220);
 }
 

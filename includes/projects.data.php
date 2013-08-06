@@ -108,69 +108,380 @@ $projects = [
 
 $shipped = [ 'es-ES','pl'];
 
-$localesPriority = [
-    'ar'    => 3,
-    'as'    => 3,
-    'ast'   => 3,
-    'be'    => 3,
-    'bg'    => 2,
-    'bn-BD' => 3,
-    'bn-IN' => 3,
-    'bs'    => 2,
-    'ca'    => 3,
-    'cs'    => 2,
-    'cy'    => 3,
-    'da'    => 3,
-    'de'    => 1,
-    'el'    => 2,
-    'eo'    => 3,
-    'es-ES' => 1,
-    'et'    => 3,
-    'eu'    => 3,
-    'ff'    => 3,
-    'fr'    => 3,
-    'fy-NL' => 3,
-    'ga-IE' => 3,
-    'gd'    => 3,
-    'gl'    => 3,
-    'gu'    => 3,
-    'he'    => 3,
-    'hi-IN' => 3,
-    'hr'    => 2,
-    'ht'    => 3,
-    'hu'    => 2,
-    'id'    => 3,
-    'it'    => 2,
-    'ja'    => 3,
-    'km'    => 3,
-    'kn'    => 3,
-    'ko'    => 3,
-    'lij'   => 3,
-    'mk'    => 2,
-    'ml'    => 3,
-    'ms'    => 3,
-    'ne-NP' => 3,
-    'nl'    => 2,
-    'or'    => 3,
-    'pa-IN' => 3,
-    'pl'    => 1,
-    'pt-BR' => 1,
-    'ro'    => 2,
-    'ru'    => 3,
-    'si'    => 3,
-    'sk'    => 2,
-    'sl'    => 3,
-    'sq'    => 2,
-    'sr'    => 2,
-    'sr-Latn' => 2,
-    'sv-SE' => 3,
-    'te'    => 3,
-    'th'    => 3,
-    'tr'    => 2,
-    'ur'    => 3,
-    'vi'    => 3,
-    'zh-CN' => 3,
-    'zh-TW' => 3,
+$localeDetails = [
+    'ar' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => 'Test comment'
+    ],
+    'as' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ast' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'be' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'bg' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'bn-BD' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'bn-IN' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'bs' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ca' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'cs' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+
+    'cy' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'da' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'de' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'el' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'eo' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'es-ES' =>
+    [
+        'priority' => 3,
+        'shipped' => true,
+        'comment' => ''
+    ],
+    'et' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'eu' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ff' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'fr' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'fy-NL' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ga-IE' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'gd' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'gl' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'gu' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'he' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'hi-IN' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'hr' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ht' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'hu' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'id' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'it' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ja' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'km' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'kn' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ko' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'lij' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'mk' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ml' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ms' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ne-NP' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'nl' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'or' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'pa-IN' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'pl' =>
+    [
+        'priority' => 3,
+        'shipped' => true,
+        'comment' => ''
+    ],
+    'pt-BR' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ro' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ru' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'si' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'sk' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'sl' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'sq' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'sr' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'sr-Latn' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'sv-SE' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'te' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'th' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'tr' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'ur' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'vi' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'zh-CN' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
+    'zh-TW' =>
+    [
+        'priority' => 3,
+        'shipped' => false,
+        'comment' => ''
+    ],
 ];
 
 // Based on the extracted data and the $projects array, determine our list of locales
@@ -184,8 +495,8 @@ foreach (['requested', 'done', 'inprogress'] as $val1) {
 $locales = array_merge($locales, array_keys($gaiaStatus));
 $locales = array_unique($locales);
 sort($locales);
-$locale_status = function($locale, $shipped) {
-    return in_array($locale, $shipped)
+$locale_status = function($locale, $localeDetails) {
+    return in_array($locale, $localeDetails[$locale]['shipped'])
             ? 'shipped'
             : '';
 };

@@ -3,15 +3,6 @@ if (!defined('INIT')) die;
 
 echo '<table  class="sortable">';
 echo '<caption>L10n Mini Dashboard for Firefox OS</caption>';
-echo '<tfoot>';
-echo '<tr class="owner">';
-echo '<th colspan="2">Owners -></th>';
-foreach ($projects as $key => $val) {
-        echo '<th>' .  $val['owners'] . '</th>';
-}
-echo '</tr>';
-echo '</tfoot>';
-
 echo '<thead>';
 echo '<tr>';
 echo '<th>Priority</th><th>Locale</th>';
@@ -31,6 +22,7 @@ foreach ($projects as $key => $val) {
     echo '</th>';
 }
 
+echo '<th>Comments</th>';
 echo '</tr>';
 echo '</thead>';
 echo '<tbody>';
@@ -105,12 +97,23 @@ foreach ($locales as $locale) {
     };
 
     echo '<tr>';
-    echo '<td>' . $localesPriority[$locale] . '</td>';
-    echo '<td class="' .  $locale_status($locale, $shipped) . '">' . $locale . '</td>';
+    echo '<td>' . $localeDetails[$locale]['priority'] . '</td>';
+    echo '<td class="' .  $locale_status($locale, $localeDetails) . '">' . $locale . '</td>';
     foreach ($projects as $key => $val) {
         echo $active($projects, $key);
     }
+    echo '<td>' . $localeDetails[$locale]['comment'] . '</td>';
     echo '</tr>';
 }
 echo '<tbody>';
+echo '<tfoot>';
+echo '<tr class="owner">';
+echo '<th colspan="2">Owners -></th>';
+foreach ($projects as $key => $val) {
+        echo '<th>' .  $val['owners'] . '</th>';
+}
+echo '<th></th>';
+echo '</tr>';
+
+echo '</tfoot>';
 echo '</table>';
