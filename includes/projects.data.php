@@ -1,30 +1,14 @@
 <?php
 if (!defined('INIT')) die;
 
-$langchecker = 'http://l10n.mozilla-community.org/~pascalc/langchecker/';
-$gaia = $getJsonArray('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia')['items'];
-$gaiaStatus         = $getGaiaCompletion($gaia);
-$slogans            = $getJsonArray($langchecker . '?locale=all&website=5&file=firefoxos.lang&json')['firefoxos.lang'];
-$marketplace_badge  = $getJsonArray($langchecker . '?locale=all&website=5&file=marketplacebadge.lang&json')['marketplacebadge.lang'];
-$partners_site      = $getJsonArray($langchecker . '?locale=all&website=0&file=firefox/partners/index.lang&json')['firefox/partners/index.lang'];
-$consumers_site     = $getJsonArray($langchecker . '?locale=all&website=0&file=firefox/os/index.lang&json')['firefox/os/index.lang'];
-$marketplace        = $getJsonArray('http://flod.org/pei/marketplace.json');
-$checkproject = function () use ($marketplace) {
-    $retval = array();
-    $projectsNames = ['fireplace', 'zamboni', 'webpay'];
-    foreach ($marketplace as $locale => $projects) {
-        foreach ($projectsNames as $name) {
-            if (isset($projects[$name])) {
-                $retval[$locale][$name] = round($projects[$name]['percentage']);
-            } else {
-                $retval[$locale][$name] = '--';
-            }
-        }
-    }
-    return $retval;
-};
-
-$marketplace        = $checkproject();
+$langchecker        = 'http://l10n.mozilla-community.org/~pascalc/langchecker/';
+$gaia               = getJsonArray('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia')['items'];
+$gaiaStatus         = getGaiaCompletion($gaia);
+$slogans            = getJsonArray($langchecker . '?locale=all&website=5&file=firefoxos.lang&json')['firefoxos.lang'];
+$marketplace_badge  = getJsonArray($langchecker . '?locale=all&website=5&file=marketplacebadge.lang&json')['marketplacebadge.lang'];
+$partners_site      = getJsonArray($langchecker . '?locale=all&website=0&file=firefox/partners/index.lang&json')['firefox/partners/index.lang'];
+$consumers_site     = getJsonArray($langchecker . '?locale=all&website=0&file=firefox/os/index.lang&json')['firefox/os/index.lang'];
+$marketplace        = marketplaceStatus('http://flod.org/pei/marketplace.json');
 
 $tweakLocaleCode = function($code1, $code2) use (&$gaiaStatus, &$marketplace) {
     if (array_key_exists($code2, $gaiaStatus)) {
@@ -38,15 +22,13 @@ $tweakLocaleCode = function($code1, $code2) use (&$gaiaStatus, &$marketplace) {
     }
 };
 
-
 $tweakLocaleCode('es-ES', 'es');
 $tweakLocaleCode('pt-BR', 'pt');
 $tweakLocaleCode('sr', 'sr-Cyrl');
 $tweakLocaleCode('pa-IN', 'pa');
+
 $gaia = array_keys($gaiaStatus);
 $temp_inprogress = $temp_done = [];
-
-
 
 $requested = [
     // from https://l10n.mozilla.org/shipping/dashboard?tree=gaia
@@ -75,12 +57,12 @@ $inprogress = [
 $done = [
     'Firefox_os'        => $temp_done,
     'marketplace'       => [],
-    'partners_site'     => $activated($partners_site),
-    'consumers_site'    => $activated($consumers_site),
-    'slogans'           => $activated($slogans),
+    'partners_site'     => activated($partners_site),
+    'consumers_site'    => activated($consumers_site),
+    'slogans'           => activated($slogans),
     'screenshots'       => ['es-ES', 'pl'],
     'whatsnew_promo'    => [],
-    'marketplace_badge' => $activated($marketplace_badge),
+    'marketplace_badge' => activated($marketplace_badge),
 
 ];
 
