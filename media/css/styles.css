@@ -4,17 +4,20 @@ body {
 table, td, th {
     border: 1px solid lightgray;
     border-collapse: collapse;
-    padding:4px 8px;
     font-size:14px;
-    font-weight:normal;
-    text-align:center;
+    vertical-align:bottom;
+    font-weight: normal;
 }
 
 td {
     text-align:right;
+    padding: 0px 4px;
 }
 
-
+th {
+    text-align:center;
+    padding: 0px 4px;
+}
 
 .automated {
     background-color:rgb(220,220,220);
@@ -22,25 +25,22 @@ td {
 
 .missing {
     background-color: red;
-    color:white;
-    text-align:right;
+    color:red;
 }
 
 .inprogress {
     background-color: orange;
-    text-align:right;
+    color: orange;
 }
 
 .bonus {
     background-color: blue;
-    color:white;
-    text-align:right;
+    color: blue;
 }
 
 .done {
     background-color: green;
-    color:white;
-    text-align:right;
+    color: green;
 }
 
 .shipped {
@@ -48,27 +48,14 @@ td {
     color:white;
 }
 
-.shipping-july {
-    background-color: rgb(250, 0, 0);
-    color:white;
+.showCell {
+    color: black;
 }
 
-.shipping-August {
-    background-color: rgb(200, 50, 0);
-    color:white;
-}
-
-.shipping-September {
-    background-color: rgb(150, 100, 0);
-    color:white;
-}
-
-.shipping-October {
-    background-color: rgb(100, 100, 0);
-    color:white;
-}
-
-.owner td {
+.owner {
+    display: block;
     background-color: lightblue;
     text-align: center;
+    width: 100%;
+    margin: 0;
 }

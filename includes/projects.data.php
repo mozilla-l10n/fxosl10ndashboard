@@ -11,8 +11,6 @@ $partners_site      = getJsonArray(cacheUrl($langchecker . '?locale=all&website=
 $consumers_site     = getJsonArray(cacheUrl($langchecker . '?locale=all&website=0&file=firefox/os/index.lang&json'))['firefox/os/index.lang'];
 $marketplace        = marketplaceStatus(cacheUrl('http://flod.org/pei/marketplace.json'));
 
-
-
 // Normalize our locale codes to display them coherently
 $tweakLocaleCode = function($code1, $code2) use (&$gaiaStatus, &$marketplace) {
     if (array_key_exists($code2, $gaiaStatus)) {
@@ -109,6 +107,71 @@ $projects = [
 ];
 
 $shipped = [ 'es-ES','pl'];
+
+$localesPriority = [
+    'ar'    => 3,
+    'as'    => 3,
+    'ast'   => 3,
+    'be'    => 3,
+    'bg'    => 2,
+    'bn-BD' => 3,
+    'bn-IN' => 3,
+    'bs'    => 2,
+    'ca'    => 3,
+    'cs'    => 2,
+    'cy'    => 3,
+    'da'    => 3,
+    'de'    => 1,
+    'el'    => 2,
+    'eo'    => 3,
+    'es-ES' => 1,
+    'et'    => 3,
+    'eu'    => 3,
+    'ff'    => 3,
+    'fr'    => 3,
+    'fy-NL' => 3,
+    'ga-IE' => 3,
+    'gd'    => 3,
+    'gl'    => 3,
+    'gu'    => 3,
+    'he'    => 3,
+    'hi-IN' => 3,
+    'hr'    => 2,
+    'ht'    => 3,
+    'hu'    => 2,
+    'id'    => 3,
+    'it'    => 2,
+    'ja'    => 3,
+    'km'    => 3,
+    'kn'    => 3,
+    'ko'    => 3,
+    'lij'   => 3,
+    'mk'    => 2,
+    'ml'    => 3,
+    'ms'    => 3,
+    'ne-NP' => 3,
+    'nl'    => 2,
+    'or'    => 3,
+    'pa-IN' => 3,
+    'pl'    => 1,
+    'pt-BR' => 1,
+    'ro'    => 2,
+    'ru'    => 3,
+    'si'    => 3,
+    'sk'    => 2,
+    'sl'    => 3,
+    'sq'    => 2,
+    'sr'    => 2,
+    'sr-Latn' => 2,
+    'sv-SE' => 3,
+    'te'    => 3,
+    'th'    => 3,
+    'tr'    => 2,
+    'ur'    => 3,
+    'vi'    => 3,
+    'zh-CN' => 3,
+    'zh-TW' => 3,
+];
 
 // Based on the extracted data and the $projects array, determine our list of locales
 $locales = [];
