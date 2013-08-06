@@ -4,7 +4,7 @@
 <head>
 <title><?=$pageTitle?></title>
 <meta charset="utf-8">
-<link href="/media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="<?=$_SERVER['REQUEST_URI'] ?>media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
