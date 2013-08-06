@@ -8,8 +8,8 @@
 
 <link rel="stylesheet" media="screen,projection,tv" href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css?build=42497ef" />
 <link rel="stylesheet" media="screen,projection,tv" href="http://www.mozilla.org//media/css/responsive-min.css?build=3bdd4c7" />
-<link href="<?=$_SERVER['REQUEST_URI'] ?>media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
-<script src="<?=$_SERVER['REQUEST_URI'] ?>media/js/sorttable.js"></script>
+<link href="<?=$_requestURL ?>media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="<?=$requestURL ?>media/js/sorttable.js"></script>
 
 </head>
 <body class="sand">

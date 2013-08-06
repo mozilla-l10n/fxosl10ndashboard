@@ -2,6 +2,19 @@
 const INIT  = true;
 const DEBUG = true;
 
+$requestURL = function() {
+    $result = $_SERVER['REQUEST_URI'];
+    $query = $_SERVER['QUERY_STRING'];
+    if (!empty($query)) {
+        $result = str_replace('?' . $query, '', $result);
+    }
+
+    return $result;
+};
+
+// This is the base URL for js/css in HTML
+$requestURL = $requestURL();
+
 // Load local environment variables that depend on the hosting configuration
 require_once  __DIR__ .'/localenv.php';
 

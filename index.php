@@ -10,4 +10,11 @@ ob_end_clean();
 $pageTitle = 'Mini-Dashboard showing the global shipping state for Firefox OS per locale';
 
 // Show dashboard in template
-include __DIR__ .'/templates/base.tpl.php';
+
+if (isset($_GET['theme']) && in_array($_GET['theme'], ['base', 'sandstone'])) {
+    $theme = $_GET['theme'];
+} else {
+    $theme = 'base';
+}
+
+include __DIR__ .'/templates/' . $theme . '.tpl.php';
