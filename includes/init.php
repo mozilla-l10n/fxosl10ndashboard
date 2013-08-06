@@ -1,9 +1,17 @@
 <?php
 const INIT = true;
-define('CACHE',  $_SERVER['DOCUMENT_ROOT'] . '/cache/');
+
+// Load local environment variables that depend on the hosting configuration
+require_once  __DIR__ .'/localenv.php';
+
+define('CACHE', $cachePath);
+
+ini_set("log_errors", 1);
+ini_set("error_log", "/tmp/fxoslocale-errors.log");
+error_log("---------------------------");
 
 if (!is_dir(CACHE)) {
-     mkdir(CACHE, 0755);
+    mkdir(CACHE, 0777);
 }
 
 // Include utility functions

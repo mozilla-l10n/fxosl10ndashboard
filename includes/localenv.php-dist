@@ -1,0 +1,4 @@
+<?php
+
+// Path to cache
+$cachePath = '/path/to/fxosl10ndashboard/cache/';
