@@ -89,6 +89,14 @@ $projects = [
         'automated'  => false,
     ],
 
+    'consumer_message' => [
+        'requested'  => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
+        'inprogress' => [],
+        'done'       => [],
+        'owners'     => 'Peiying',
+        'automated'  => false,
+    ],
+
     'whatsnew_promo' => [
         'requested'  => ['es-ES', 'pl'],
         'inprogress' => [],
