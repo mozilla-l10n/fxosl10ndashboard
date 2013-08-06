@@ -83,7 +83,7 @@ $projects = [
 
     'screenshots' => [
         'requested'  => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
-        'inprogress' => [],
+        'inprogress' => ['de', 'hu', 'pt-BR', 'ro' ],
         'done'       => ['es-ES', 'pl'],
         'owners'     => 'Peiying',
         'automated'  => false,
