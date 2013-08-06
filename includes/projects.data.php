@@ -39,51 +39,70 @@ foreach ($gaiaStatus as $key => $val) {
     }
 }
 
-$requested = [
-    // from https://l10n.mozilla.org/shipping/dashboard?tree=gaia
-    // Turkish data is from https://intranet.mozilla.org/Program_Management/Firefox_OS/Localization
-    'Firefox_os'        => ['cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'tr'],
-    'marketplace'       => ['cs', 'de', 'el', 'es-ES', 'pl', 'pt-BR'],
-    'partners_site'     => ['de', 'es-ES', 'it', 'ja', 'ko', 'pl', 'pt-BR', 'zh-CN', 'zh-TW'],
-    'consumers_site'    => ['cs', 'de', 'el', 'es-ES', 'hu', 'pl', 'pt-BR', 'sr'],
-    'slogans'           => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
-    'screenshots'       => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
-    'whatsnew_promo'    => ['es-ES', 'pl'],
-    'marketplace_badge' => ['cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'tr'],
-];
+$projects = [
+    'Firefox_os' => [
+        'requested'  => ['cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'tr'],
+        'inprogress' => $temp_inprogress,
+        'done'       => $temp_done,
+        'owners'     => 'Axel',
+        'automated'  => true,
+    ],
 
-$inprogress = [
-    'Firefox_os'        => $temp_inprogress,
-    'marketplace'       => [],
-    'partners_site'     => [],
-    'consumers_site'    => [],
-    'slogans'           => ['cs', 'de', 'el', 'es-ES', 'hu', 'pl', 'ro'],
-    'screenshots'       => [],
-    'whatsnew_promo'    => [],
-    'marketplace_badge' => [],
-];
+    'marketplace' => [
+        'requested'  => ['cs', 'de', 'el', 'es-ES', 'pl', 'pt-BR'],
+        'inprogress' => [],
+        'done'       => [],
+        'owners'     => 'Peiying',
+        'automated'  => true,
+    ],
 
-$done = [
-    'Firefox_os'        => $temp_done,
-    'marketplace'       => [],
-    'partners_site'     => activated($partners_site),
-    'consumers_site'    => activated($consumers_site),
-    'slogans'           => activated($slogans),
-    'screenshots'       => ['es-ES', 'pl'],
-    'whatsnew_promo'    => [],
-    'marketplace_badge' => activated($marketplace_badge),
+    'partners_site' => [
+        'requested'  => ['de', 'es-ES', 'it', 'ja', 'ko', 'pl', 'pt-BR', 'zh-CN', 'zh-TW'],
+        'inprogress' => [],
+        'done'       => activated($partners_site),
+        'owners'     => 'Pascal',
+        'automated'  => true,
+    ],
 
-];
+    'consumers_site' => [
+        'requested'  => ['cs', 'de', 'el', 'es-ES', 'hu', 'pl', 'pt-BR', 'sr'],
+        'inprogress' => [],
+        'done'       => activated($consumers_site),
+        'owners'     => 'Pascal',
+        'automated'  => true,
+    ],
 
-$owners = [
-    'Firefox_os'        => 'Axel',
-    'marketplace'       => 'Peiying',
-    'partners_site'     => 'Pascal',
-    'consumers_site'    => 'Pascal',
-    'slogans'           => 'Pascal & Flod',
-    'screenshots'       => 'Peiying',
-    'whatsnew_promo'    => 'Pascal',
-    'marketplace_badge' => 'Pascal & Flod',
+    'slogans' => [
+        'requested'  => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
+        'inprogress' => [],
+        'done'       => activated($slogans),
+        'owners'     => 'Pascal & Flod',
+        'automated'  => true,
+    ],
+
+    'screenshots' => [
+        'requested'  => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
+        'inprogress' => [],
+        'done'       => ['es-ES', 'pl'],
+        'owners'     => 'Peiying',
+        'automated'  => false,
+    ],
+
+    'whatsnew_promo' => [
+        'requested'  => ['es-ES', 'pl'],
+        'inprogress' => [],
+        'done'       => [],
+        'owners'     => 'Pascal',
+        'automated'  => false,
+    ],
+
+    'marketplace_badge' => [
+        'requested'  => ['cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'tr'],
+        'inprogress' => [],
+        'done'       => activated($marketplace_badge),
+        'owners'     => 'Pascal & Flod',
+        'automated'  => true,
+    ],
 ];
 
 $onmarket = [
@@ -91,21 +110,11 @@ $onmarket = [
     'pl' => 'shipped',
 ];
 
-$automated = [
-    'Firefox_os'        => true,
-    'marketplace'       => true,
-    'partners_site'     => true,
-    'consumers_site'    => true,
-    'slogans'           => true,
-    'screenshots'       => false,
-    'whatsnew_promo'    => false,
-    'marketplace_badge' => true,
-];
 
 $locales = [];
 foreach (['requested', 'done', 'inprogress'] as $val1) {
-    foreach (array_keys($requested) as $val2) {
-        $locales = array_merge($locales, ${$val1}[$val2]);
+    foreach ($projects as $key => $val2) {
+        $locales = array_merge($locales, $projects[$key][$val1]);
     }
 }
 

@@ -6,8 +6,8 @@ echo '<table>';
 echo '<tr>';
 echo '<th></th>';
 
-foreach ($automated as $key => $val) {
-    $th = ($val == true) ? '<th class="automated">' : '<th>';
+foreach ($projects as $key => $val) {
+    $th = ($val['automated'] == true) ? '<th class="automated">' : '<th>';
 
     if ($key == 'Firefox_os') {
         echo $th .  ucwords(str_replace('_', ' ', $key)) . '<br><small><a href="https://l10n.mozilla.org/shipping/dashboard?tree=gaia-community&tree=gaia">(Data Source)</a></small></th>';
@@ -22,24 +22,29 @@ echo '</tr>';
 
 echo '<tr class="owner">';
 echo '<th>Owner</th>';
-foreach ($owners as $key => $val) {
-        echo '<td>' .  $val . '</td>';
+foreach ($projects as $key => $val) {
+        echo '<td>' .  $val['owners'] . '</td>';
 }
 echo '</tr>';
 
 foreach ($locales as $locale) {
 
-    $active = function($requested, $done, $inprogress, $key) use ($locale, $gaiaStatus, $marketplace) {
+    $active = function($projects, $key) use ($locale, $gaiaStatus, $marketplace) {
 
         $cell = '';
 
-        if (in_array($locale, $requested) && !in_array($locale, $done) && !in_array($locale, $inprogress)) {
+        if (in_array($locale, $projects[$key]['requested'])
+            && !in_array($locale, $projects[$key]['done'])
+            && !in_array($locale, $projects[$key]['inprogress'])) {
             $class = 'missing';
-        } else if (!in_array($locale, $requested) && in_array($locale, $done)) {
+        } elseif (!in_array($locale, $projects[$key]['requested'])
+                   && in_array($locale, $projects[$key]['done'])) {
             $class = 'bonus';
-        } else if (in_array($locale, $requested) && in_array($locale, $done)) {
+        } elseif (in_array($locale, $projects[$key]['requested'])
+                  && in_array($locale, $projects[$key]['done'])) {
             $class = 'done';
-        } else if (in_array($locale, $requested) && in_array($locale, $inprogress)) {
+        } elseif (in_array($locale, $projects[$key]['requested'])
+                  && in_array($locale, $projects[$key]['inprogress'])) {
             $class = 'inprogress';
         } else {
             $class = '';
@@ -56,14 +61,14 @@ foreach ($locales as $locale) {
                 && $marketplace[$locale]['zamboni'] >= 99
                 && $marketplace[$locale]['webpay'] >= 94)
             {
-                if (in_array($locale, $requested)) {
+                if (in_array($locale, $projects[$key]['requested'])) {
                     $class = 'done';
                 } else {
                     $class = 'bonus';
                 }
             } elseif (array_sum($marketplace[$locale]) > 270) {
                 $class = 'inprogress';
-            } elseif (in_array($locale, $requested)) {
+            } elseif (in_array($locale, $projects[$key]['requested'])) {
                 $class = 'missing';
             } else {
                 $class = '';
@@ -90,8 +95,8 @@ foreach ($locales as $locale) {
 
     echo '<tr>';
     echo '<th class="' .  $locale_status($locale) . '">' . $locale . '</th>';
-    foreach ($requested as $key => $val) {
-        echo $active($requested[$key], $done[$key], $inprogress[$key], $key);
+    foreach ($projects as $key => $val) {
+        echo $active($projects, $key);
     }
     echo '</tr>';
 }
