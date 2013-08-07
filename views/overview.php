@@ -107,6 +107,17 @@ foreach ($locales as $locale) {
 }
 echo '<tbody>';
 echo '<tfoot>';
+
+// Footer: external links
+echo '<tr class="externallinks">';
+echo '<th colspan="2">Links -></th>';
+foreach ($projects as $key => $val) {
+        echo '<th><a href="' .  $val['link'] . '">' .  $val['link_description'] . '</a></th>';
+}
+echo '<th></th>';
+echo '</tr>';
+
+// Footer: owners
 echo '<tr class="owner">';
 echo '<th colspan="2">Owners -></th>';
 foreach ($projects as $key => $val) {
