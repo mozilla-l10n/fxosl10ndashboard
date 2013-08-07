@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" media="screen,projection,tv" href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css?build=42497ef" />
 <link rel="stylesheet" media="screen,projection,tv" href="http://www.mozilla.org//media/css/responsive-min.css?build=3bdd4c7" />
-<link href="<?=$_requestURL ?>media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="<?=$requestURL ?>media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="<?=$requestURL ?>media/js/sorttable.js"></script>
 
 </head>
