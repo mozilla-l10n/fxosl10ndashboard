@@ -7,10 +7,43 @@ function getJsonArray($url) {
     return json_decode(file_get_contents($url), true);
 }
 
-function activated($arr) {
+
+/*
+ * return an array of locales that have the ## active ## tag set for a
+ * a lang file, indicating that the task is done and on production
+ *
+ * dotlangActivated()
+ * @param array
+ * @return array
+ */
+function dotlangActivated($arr)
+{
     $locales = [];
     foreach ($arr as $key => $val) {
         if ($arr[$key]['activated'] == true) {
+            if (in_array($key, ['es-MX', 'es-CL', 'es-AR'])) {
+                continue;
+            }
+            $locales[] = $key;
+        }
+    }
+
+    return $locales;
+}
+
+/*
+ * return an array of locales that have all strings translated
+ * for a .lang file.
+ *
+ * dotlangTranslated()
+ * @param array
+ * @return array
+ */
+function dotlangTranslated($arr)
+{
+    $locales = [];
+    foreach ($arr as $key => $val) {
+        if ($arr[$key]['Identical'] == 0) {
             if (in_array($key, ['es-MX', 'es-CL', 'es-AR'])) {
                 continue;
             }

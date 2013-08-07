@@ -63,8 +63,8 @@ $projects = [
 
     'partners_site' => [
         'requested'        => ['de', 'es-ES', 'it', 'ja', 'ko', 'pl', 'pt-BR', 'zh-CN', 'zh-TW'],
-        'inprogress'       => [],
-        'done'             => activated($partners_site),
+        'inprogress'       => dotlangTranslated($partners_site),
+        'done'             => dotlangActivated($partners_site),
         'owners'           => 'Pascal',
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=840960',
         'link_description' => 'Tracking Bug',
@@ -73,8 +73,8 @@ $projects = [
 
     'consumers_site' => [
         'requested'        => ['cs', 'de', 'el', 'es-ES', 'hu', 'pl', 'pt-BR', 'sr'],
-        'inprogress'       => [],
-        'done'             => activated($consumers_site),
+        'inprogress'       => dotlangTranslated($consumers_site),
+        'done'             => dotlangActivated($consumers_site),
         'owners'           => 'Pascal',
         'link'             => '',
         'link_description' => '',
@@ -83,8 +83,8 @@ $projects = [
 
     'slogans' => [
         'requested'        => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
-        'inprogress'       => [],
-        'done'             => activated($slogans),
+        'inprogress'       => dotlangTranslated($slogans),
+        'done'             => dotlangActivated($slogans),
         'owners'           => 'Pascal & Flod',
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=893094',
         'link_description' => 'Tracking Bug',
@@ -123,8 +123,8 @@ $projects = [
 
     'marketplace_badge' => [
         'requested'        => ['cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'tr'],
-        'inprogress'       => [],
-        'done'             => activated($marketplace_badge),
+        'inprogress'       => dotlangTranslated($marketplace_badge),
+        'done'             => dotlangActivated($marketplace_badge),
         'owners'           => 'Pascal & Flod',
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=900060',
         'link_description' => 'Tracking Bug',
