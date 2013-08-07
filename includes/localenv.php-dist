@@ -2,3 +2,7 @@
 
 // Path to cache
 $cachePath = '/path/to/fxosl10ndashboard/cache/';
+
+// Cache expire (seconds), default 10 minutes
+$cacheExpire = 600;
+

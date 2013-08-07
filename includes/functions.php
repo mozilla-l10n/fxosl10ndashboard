@@ -53,7 +53,7 @@ function getGaiaCompletion($gaia)
 }
 
 
-function cacheUrl($url, $time = 600)
+function cacheUrl($url, $time = CACHE_EXPIRE)
 {
     $cache = CACHE . sha1($url) . '.cache';
     if (is_file($cache)) {
