@@ -41,33 +41,32 @@ table.floatL {
 }
 
 .automated {
-
     background-color:#F6F4EC;
 }
 
 .missing {
-    background-color: red;
-    color:red;
+    background-color: #FF5252;
+    color: #FF5252;
 }
 
 .inprogress {
-    background-color: orange;
-    color: orange;
+    background-color: #FFBD52;
+    color: #FFBD52;
 }
 
 .bonus {
-    background-color: blue;
-    color: blue;
+    background-color: #52ADDE;
+    color: #52ADDE;
 }
 
 .done {
-    background-color: green;
-    color: green;
+    background-color: #92CC6E;
+    color: #92CC6E;
 }
 
 .shipped {
     background-color: purple;
-    color:white;
+    color: white;
 }
 
 .showCell {
