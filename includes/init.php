@@ -20,6 +20,9 @@ require_once  __DIR__ .'/localenv.php';
 
 define('CACHE', $cachePath);
 
+$cacheExpire = !empty($cacheExpire) ? $cacheExpire : 600;
+define('CACHE_EXPIRE', $cacheExpire);
+
 // Set debug environment
 if(DEBUG) {
     error_reporting(E_ALL);
