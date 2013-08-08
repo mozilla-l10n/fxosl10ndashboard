@@ -11,8 +11,8 @@
 <body class="base">
 <?=$content;?>
 	<table class="floatL">
+        <caption>Color codes</caption>
 		<tbody>
-			<caption>Color codes</caption>
 			<tr>
 				<td class="done"></td>
 				<td>Done</td>
