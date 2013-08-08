@@ -1,12 +1,18 @@
 .base table {
+    border-collapse: separate;
     border: 1px solid lightgray;
-    margin:auto;
+    margin: auto;
 }
 
 .base td,
 .base th {
-    border: 1px solid lightgray;
+    border-right: 1px solid lightgray;
     padding: 2px 1em;
+}
+
+.base td:last-child,
+.base th:last-child {
+    border-right: 0;
 }
 
 .base td {
@@ -36,8 +42,16 @@
 }
 
 table.floatL {
-    float:left;
+    float: left;
     margin: 0 0 5px 5px;
+}
+
+table.floatL td {
+    border-bottom: 1px solid lightgray;
+}
+
+table.floatL tr:last-child td {
+    border-bottom: 0;
 }
 
 .automated {
@@ -81,4 +95,8 @@ table.floatL {
 .externallinks {
     background-color: #E6E1D5;
     text-align: center;
+}
+
+.externallinks th {
+    border-right: 0;
 }
