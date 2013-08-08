@@ -3,14 +3,13 @@
 <html>
 <head>
 <title><?=$pageTitle?></title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" media="screen,projection,tv" href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css?build=42497ef" />
-<link rel="stylesheet" media="screen,projection,tv" href="http://www.mozilla.org//media/css/responsive-min.css?build=3bdd4c7" />
-<link href="<?=$requestURL ?>media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
-<script src="<?=$requestURL ?>media/js/sorttable.js"></script>
-
+    <link rel="stylesheet" media="screen,projection,tv" href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css?build=42497ef" />
+    <link rel="stylesheet" media="screen,projection,tv" href="http://www.mozilla.org//media/css/responsive-min.css?build=3bdd4c7" />
+    <link href="<?=$requestURL ?>media/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="<?=$requestURL ?>media/js/sorttable.js"></script>
 </head>
 <body class="sand">
     <div id="outer-wrapper">
@@ -31,6 +30,6 @@
         </div>
     </div>
 
-<script src="//mozorg.cdn.mozilla.net/en-US/tabzilla/tabzilla.js?build=42497ef"></script>
+    <script src="//mozorg.cdn.mozilla.net/en-US/tabzilla/tabzilla.js?build=42497ef"></script>
 </body>
 </html>

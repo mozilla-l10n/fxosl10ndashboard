@@ -1,15 +1,16 @@
 <?php
 if (!defined('INIT')) die;
 
-echo '<table  class="table sortable">';
-echo '<caption>L10n Mini Dashboard for Firefox OS</caption>';
-echo '<thead>';
-echo '<tr>';
-echo '<th>Priority</th><th>Locale</th>';
+echo '    <table class="table sortable">' . "\n";
+echo '        <caption>L10n Mini Dashboard for Firefox OS</caption>' . "\n";
+echo '        <thead>' . "\n";
+echo '            <tr>' . "\n";
+echo '                <th>Priority</th>' . "\n";
+echo '                <th>Locale</th>' . "\n";
 
 
 foreach ($projects as $key => $val) {
-    $th = ($val['automated'] == true) ? '<th class="automated">' : '<th>';
+    $th = ($val['automated'] == true) ? '                <th class="automated">' : '                <th>';
 
     if ($key == 'Firefox_os') {
         echo $th .  ucwords(str_replace('_', ' ', $key));
@@ -19,13 +20,13 @@ foreach ($projects as $key => $val) {
         echo $th .  ucwords(str_replace('_', ' ', $key));
     }
 
-    echo '</th>';
+    echo '</th>' . "\n";
 }
 
-echo '<th>Comments</th>';
-echo '</tr>';
-echo '</thead>';
-echo '<tbody>';
+echo '                <th>Comments</th>' . "\n";
+echo '            </tr>' . "\n";
+echo '        </thead>' . "\n";
+echo '        <tbody>' . "\n";
 
 foreach ($locales as $locale) {
 
@@ -81,7 +82,7 @@ foreach ($locales as $locale) {
 
         }
 
-        return '<td class="' . $class . '">' . $cell . '</td>';
+        return '               <td class="' . $class . '">' . $cell . '</td>' . "\n";
     };
 
     $tweakLocaleCode = function($code1, $code2) use (&$gaiaStatus, &$marketplace) {
@@ -96,35 +97,35 @@ foreach ($locales as $locale) {
         }
     };
 
-    echo '<tr>';
-    echo '<td>' . $localeDetails[$locale]['priority'] . '</td>';
-    echo '<td class="' .  $locale_status($locale, $localeDetails) . '">' . $locale . '</td>';
+    echo '           <tr>' . "\n";
+    echo '               <td>' . $localeDetails[$locale]['priority'] . '</td>' . "\n";
+    echo '               <td class="' .  $locale_status($locale, $localeDetails) . '">' . $locale . '</td>' . "\n";
     foreach ($projects as $key => $val) {
         echo $active($projects, $key);
     }
-    echo '<td>' . $localeDetails[$locale]['comment'] . '</td>';
-    echo '</tr>';
+    echo '               <td>' . $localeDetails[$locale]['comment'] . '</td>' . "\n";
+    echo '           </tr>' .  "\n";
 }
-echo '<tbody>';
-echo '<tfoot>';
+echo '        <tbody>' .  "\n";
+echo '        <tfoot>' .  "\n";
 
 // Footer: external links
-echo '<tr class="externallinks">';
-echo '<th colspan="2">Links -></th>';
+echo '           <tr class="externallinks">' . "\n";
+echo '               <th colspan="2">Links -></th>' . "\n";
 foreach ($projects as $key => $val) {
-        echo '<th><a href="' .  $val['link'] . '">' .  $val['link_description'] . '</a></th>';
+        echo '               <th><a href="' .  $val['link'] . '">' .  $val['link_description'] . '</a></th>' . "\n";
 }
-echo '<th></th>';
-echo '</tr>';
+echo '               <th></th>' . "\n";
+echo '           </tr>' . "\n";
 
 // Footer: owners
-echo '<tr class="owner">';
-echo '<th colspan="2">Owners -></th>';
+echo '           <tr class="owner">' . "\n";
+echo '               <th colspan="2">Owners -></th>' . "\n";
 foreach ($projects as $key => $val) {
-        echo '<th>' .  $val['owners'] . '</th>';
+        echo '               <th>' .  $val['owners'] . '</th>' . "\n";
 }
-echo '<th></th>';
-echo '</tr>';
+echo '               <th></th>' . "\n";
+echo '           </tr>' . "\n";
 
-echo '</tfoot>';
-echo '</table>';
+echo '        </tfoot>' . "\n";
+echo '    </table>' . "\n";
