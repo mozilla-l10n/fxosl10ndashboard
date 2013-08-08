@@ -75,14 +75,19 @@ function marketplaceStatus($dataUrl)
 
 function getGaiaCompletion($gaia)
 {
-    $temp = [];
-    foreach ($gaia as $key => $value) {
-        if (array_key_exists('tree', $value) && ($value['tree'] == 'gaia-community' or $value['tree'] == 'gaia') ) {
-            $temp[$value['locale']] = $value['completion'];
+    $completion = [];
+
+    foreach ($gaia as $value) {
+        if (array_key_exists('tree', $value)
+            && ($value['tree'] == 'gaia-community'
+            or $value['tree'] == 'gaia') ) {
+            $completion[$value['locale']] = $value['completion'];
         }
     }
-    ksort($temp);
-    return $temp;
+
+    ksort($completion);
+
+    return $completion;
 }
 
 
