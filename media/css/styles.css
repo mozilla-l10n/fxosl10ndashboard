@@ -1,5 +1,4 @@
 .base table {
-    border-collapse: collapse;
     border: 1px solid lightgray;
     margin:auto;
 }
@@ -38,6 +37,7 @@
 
 table.floatL {
     float:left;
+    margin: 0 0 5px 5px;
 }
 
 .automated {
