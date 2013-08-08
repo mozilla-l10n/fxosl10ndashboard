@@ -9,7 +9,7 @@ $slogans            = getJsonArray(cacheUrl($langchecker . '?locale=all&website=
 $marketplace_badge  = getJsonArray(cacheUrl($langchecker . '?locale=all&website=5&file=marketplacebadge.lang&json'))['marketplacebadge.lang'];
 $partners_site      = getJsonArray(cacheUrl($langchecker . '?locale=all&website=0&file=firefox/partners/index.lang&json'))['firefox/partners/index.lang'];
 $consumers_site     = getJsonArray(cacheUrl($langchecker . '?locale=all&website=0&file=firefox/os/index.lang&json'))['firefox/os/index.lang'];
-$marketplace        = marketplaceStatus(cacheUrl('http://flod.org/pei/marketplace.json'));
+$marketplace        = marketplaceStatus(cacheUrl('http://l10n.mozilla-community.org/~flod/mpstats/marketplace.json'));
 
 // Normalize our locale codes to display them coherently
 $tweakLocaleCode = function($code1, $code2) use (&$gaiaStatus, &$marketplace) {
