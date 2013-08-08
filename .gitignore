@@ -1,2 +1,3 @@
 includes/localenv.php
-cache
+cache/*
+!cache/.htaccess
