@@ -137,224 +137,224 @@ $shipped = [ 'es-ES','pl'];
 $localeDetails = [
     'ar' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => 'Test comment'
     ],
     'as' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'ast' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'be' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'bg' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'bn-BD' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'bn-IN' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'bs' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'ca' =>
     [
-        'priority' => 3,
+        'priority' => 2,
         'shipped' => false,
         'comment' => ''
     ],
     'cs' =>
     [
-        'priority' => 3,
+        'priority' => 1,
         'shipped' => false,
         'comment' => ''
     ],
 
     'cy' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'da' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'de' =>
     [
-        'priority' => 3,
+        'priority' => 1,
         'shipped' => false,
         'comment' => ''
     ],
     'el' =>
     [
-        'priority' => 3,
+        'priority' => 2,
         'shipped' => false,
         'comment' => ''
     ],
     'eo' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'es-ES' =>
     [
-        'priority' => 3,
+        'priority' => 1,
         'shipped' => true,
         'comment' => ''
     ],
     'et' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'eu' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'ff' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'fr' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'fy-NL' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'ga-IE' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'gd' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'gl' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'gu' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'he' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'hi-IN' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'hr' =>
     [
-        'priority' => 3,
+        'priority' => 1,
         'shipped' => false,
         'comment' => ''
     ],
     'ht' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'hu' =>
     [
-        'priority' => 3,
+        'priority' => 1,
         'shipped' => false,
         'comment' => ''
     ],
     'id' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'it' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'ja' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'km' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'kn' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'ko' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'lij' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
@@ -366,133 +366,133 @@ $localeDetails = [
     ],
     'ml' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'ms' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'ne-NP' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'nl' =>
     [
-        'priority' => 3,
+        'priority' => 2,
         'shipped' => false,
         'comment' => ''
     ],
     'or' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'pa-IN' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'pl' =>
     [
-        'priority' => 3,
+        'priority' => 1,
         'shipped' => true,
         'comment' => ''
     ],
     'pt-BR' =>
     [
-        'priority' => 3,
+        'priority' => 1,
         'shipped' => false,
         'comment' => ''
     ],
     'ro' =>
     [
-        'priority' => 3,
+        'priority' => 1,
         'shipped' => false,
         'comment' => ''
     ],
     'ru' =>
     [
-        'priority' => 3,
+        'priority' => 2,
         'shipped' => false,
         'comment' => ''
     ],
     'si' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'sk' =>
     [
-        'priority' => 3,
+        'priority' => 2,
         'shipped' => false,
         'comment' => ''
     ],
     'sl' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'sq' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'sr' =>
     [
-        'priority' => 3,
+        'priority' => 2,
         'shipped' => false,
         'comment' => ''
     ],
     'sr-Latn' =>
     [
-        'priority' => 3,
+        'priority' => 2,
         'shipped' => false,
         'comment' => ''
     ],
     'sv-SE' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'te' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'th' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'tr' =>
     [
-        'priority' => 3,
+        'priority' => 2,
         'shipped' => false,
         'comment' => ''
     ],
     'ur' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
     'vi' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
@@ -504,7 +504,7 @@ $localeDetails = [
     ],
     'zh-TW' =>
     [
-        'priority' => 3,
+        'priority' => 4,
         'shipped' => false,
         'comment' => ''
     ],
