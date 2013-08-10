@@ -76,8 +76,8 @@ $projects = [
         'inprogress'       => dotlangTranslated($consumers_site),
         'done'             => dotlangActivated($consumers_site),
         'owners'           => 'Pascal',
-        'link'             => '',
-        'link_description' => '',
+        'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=883788',
+        'link_description' => 'Tracking Bug',
         'automated'        => true,
     ],
 
@@ -116,8 +116,8 @@ $projects = [
         'inprogress'       => [],
         'done'             => [],
         'owners'           => 'Pascal',
-        'link'             => '',
-        'link_description' => '',
+        'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=896611',
+        'link_description' => 'Tracking Bug',
         'automated'        => false,
     ],
 
