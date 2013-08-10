@@ -511,16 +511,35 @@ $localeDetails = [
 ];
 
 // Based on the extracted data and the $projects array, determine our list of locales
-$locales = [];
-foreach (['requested', 'done', 'inprogress'] as $val1) {
-    foreach ($projects as $key => $val2) {
-        $locales = array_merge($locales, $projects[$key][$val1]);
-    }
-}
+$extractLocales = function() use($projects, $gaiaStatus, $localeDetails) {
 
-$locales = array_merge($locales, array_keys($gaiaStatus));
-$locales = array_unique($locales);
-sort($locales);
+    $locales = [];
+    foreach (['requested', 'done', 'inprogress'] as $status) {
+        foreach ($projects as $projectName => $val) {
+            $locales = array_merge($locales, $projects[$projectName][$status]);
+        }
+    }
+
+    $locales = array_merge($locales, array_keys($gaiaStatus));
+    $locales = array_unique($locales);
+
+    $priorityLocales = [];
+    foreach ($locales as $locale) {
+        if (array_key_exists($locale, $localeDetails)) {
+            $priorityLocales[$locale] = $localeDetails[$locale]['priority'];
+        } else {
+            $priorityLocales[$locale] = 4;
+        }
+    }
+
+    asort($priorityLocales);
+
+    return array_keys($priorityLocales);
+};
+
+$locales = $extractLocales();
+
+
 $locale_status = function($locale, $localeDetails) {
     return ($localeDetails[$locale]['shipped'] == true)
             ? 'shipped'
