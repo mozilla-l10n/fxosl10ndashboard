@@ -42,7 +42,7 @@ foreach ($gaiaStatus as $key => $val) {
 // This is the list of our projects
 $projects = [
     'Firefox_os' => [
-        'requested'        => ['cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'tr'],
+        'requested'        => ['ca', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'sr-Latn', 'tr'],
         'inprogress'       => $temp_inprogress,
         'done'             => $temp_done,
         'owners'           => 'Axel',
@@ -452,7 +452,7 @@ $localeDetails = [
     [
         'priority' => 2,
         'shipped' => false,
-        'comment' => ''
+        'comment' => 'sr or sr-Cyrl is Serbian Cyrillic '
     ],
     'sr-Latn' =>
     [
