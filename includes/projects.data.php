@@ -139,7 +139,7 @@ $localeDetails = [
     [
         'priority' => 4,
         'shipped' => false,
-        'comment' => 'Test comment'
+        'comment' => ''
     ],
     'as' =>
     [
@@ -532,7 +532,7 @@ $extractLocales = function() use($projects, $gaiaStatus, $localeDetails) {
         }
     }
 
-    asort($priorityLocales);
+    array_multisort($priorityLocales, $locales);
 
     return array_keys($priorityLocales);
 };
