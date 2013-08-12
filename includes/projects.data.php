@@ -56,8 +56,8 @@ $projects = [
         'inprogress'       => [],
         'done'             => [],
         'owners'           => 'Peiying',
-        'link'             => '',
-        'link_description' => '',
+        'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=903145',
+        'link_description' => 'Tracking Bug',
         'automated'        => true,
     ],
 
@@ -93,7 +93,7 @@ $projects = [
 
     'screenshots' => [
         'requested'        => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
-        'inprogress'       => ['de', 'hu', 'pt-BR', 'ro' ],
+        'inprogress'       => ['de', 'hu', 'el', 'pt-BR', 'ro' ],
         'done'             => ['es-ES', 'pl'],
         'owners'           => 'Peiying',
         'link'             => '',
@@ -103,8 +103,8 @@ $projects = [
 
     'consumer_message' => [
         'requested'        => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
-        'inprogress'       => [],
-        'done'             => [],
+        'inprogress'       => ['hr'],
+        'done'             => ['bg', 'cs', 'de', 'ro'],
         'owners'           => 'Peiying',
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=893094',
         'link_description' => 'Tracking Bug',
