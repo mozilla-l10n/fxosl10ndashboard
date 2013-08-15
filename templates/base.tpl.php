@@ -38,9 +38,6 @@
 				<td>Project which data is automatically generated</td>
 			</tr>
 		</tbody>
-<!--
-	test cron job
--->
 	</table>
 </body>
 </html>
