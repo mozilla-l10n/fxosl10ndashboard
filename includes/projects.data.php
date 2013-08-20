@@ -93,20 +93,30 @@ $projects = [
 
     'screenshots' => [
         'requested'        => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
-        'inprogress'       => ['de', 'hu', 'el', 'pt-BR', 'ro' ],
+        'inprogress'       => ['cs', 'de', 'el', 'hr', 'hu', 'pt-BR', 'ro'],
         'done'             => ['es-ES', 'pl'],
         'owners'           => 'Peiying',
-        'link'             => '',
-        'link_description' => '',
+        'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=902571',
+        'link_description' => 'Tracking Bug',
         'automated'        => false,
     ],
 
-    'consumer_message' => [
+    'consumer_headlines' => [
         'requested'        => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
         'inprogress'       => ['hr'],
         'done'             => ['bg', 'cs', 'de', 'ro'],
         'owners'           => 'Peiying',
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=893094',
+        'link_description' => 'Tracking Bug',
+        'automated'        => false,
+    ],
+
+    'consumer_docs' => [
+        'requested'        => ['bg', 'cs', 'de', 'el', 'hr', 'hu', 'mk', 'pt-BR', 'ro', 'sr'],
+        'inprogress'       => ['hu', 'sr'],
+        'done'             => ['cs', 'de', 'el', 'hr', 'mk', 'ro'],
+        'owners'           => 'Peiying',
+        'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=902056',
         'link_description' => 'Tracking Bug',
         'automated'        => false,
     ],
@@ -129,6 +139,16 @@ $projects = [
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=900060',
         'link_description' => 'Tracking Bug',
         'automated'        => true,
+    ],
+
+    'masterfirefoxos.com' => [
+        'requested'        => ['el', 'de', 'hu', 'pt-BR', 'sr'],
+        'inprogress'       => ['el', 'de', 'hu', 'pt-BR', 'sr'],
+        'done'             => [],
+        'owners'           => 'Peiying',
+        'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=904896',
+        'link_description' => 'Tracking Bug',
+        'automated'        => false,
     ],
 ];
 
