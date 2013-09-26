@@ -58,7 +58,7 @@ function marketplaceStatus($dataUrl)
 {
     $marketplaceData = getJsonArray($dataUrl);
     $status = array();
-    $projectsNames = ['fireplace', 'zamboni', 'webpay'];
+    $projectsNames = ['fireplace', 'zamboni', 'webpay', 'commbadge', 'rocketfuel'];
     foreach ($marketplaceData as $locale => $projects) {
         foreach ($projectsNames as $name) {
             if (isset($projects[$name])) {

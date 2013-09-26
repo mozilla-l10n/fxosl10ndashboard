@@ -15,7 +15,7 @@ foreach ($projects as $key => $val) {
     if ($key == 'Firefox_os') {
         echo $th .  ucwords(str_replace('_', ' ', $key));
     } elseif ($key == 'marketplace') {
-        echo $th .  ucwords(str_replace('_', ' ', $key)) . '<br><small>fireplace/zamboni/webpay</small>';
+        echo $th .  ucwords(str_replace('_', ' ', $key)) . '<br><small>fireplace zamboni webpay commbadge rocketfuel</small>';
     } else {
         echo $th .  ucwords(str_replace('_', ' ', $key));
     }
@@ -61,7 +61,7 @@ foreach ($locales as $locale) {
         }
 
         if ($key == 'marketplace' && array_key_exists($locale, $marketplace)) {
-            $cell = implode('/', $marketplace[$locale]);
+            $cell = implode(' / ', $marketplace[$locale]);
 
             if ( $marketplace[$locale]['fireplace'] == 100
                 && $marketplace[$locale]['zamboni'] >= 99
