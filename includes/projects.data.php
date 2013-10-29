@@ -152,7 +152,7 @@ $projects = [
     ],
 ];
 
-$shipped = [ 'es-ES','pl'];
+$shipped = [ 'de', 'es-ES', 'pl', 'pt-BR'];
 
 $localeDetails = [
     'ar' =>
