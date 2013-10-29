@@ -152,8 +152,6 @@ $projects = [
     ],
 ];
 
-$shipped = [ 'de', 'es-ES', 'pl', 'pt-BR'];
-
 $localeDetails = [
     'ar' =>
     [
@@ -231,7 +229,7 @@ $localeDetails = [
     'de' =>
     [
         'priority' => 1,
-        'shipped' => false,
+        'shipped' => true,
         'comment' => ''
     ],
     'el' =>
@@ -429,7 +427,7 @@ $localeDetails = [
     'pt-BR' =>
     [
         'priority' => 1,
-        'shipped' => false,
+        'shipped' => true,
         'comment' => ''
     ],
     'ro' =>
