@@ -79,8 +79,11 @@ function getGaiaCompletion($gaia)
 
     foreach ($gaia as $value) {
         if (array_key_exists('tree', $value)
-            && ($value['tree'] == 'gaia-community'
-            or $value['tree'] == 'gaia') ) {
+            && in_array(
+                $value['tree'],
+                ['gaia-community', 'gaia', 'gaia-v1_1', 'gaia-v1_2']
+            )
+        ) {
             $completion[$value['locale']] = $value['completion'];
         }
     }
@@ -90,6 +93,25 @@ function getGaiaCompletion($gaia)
     return $completion;
 }
 
+
+function normalizeGaiaLocales($gaia)
+{
+    $map = [
+        'es'      => 'es-ES',
+        'pa'      => 'pa-IN',
+        'pt'      => 'pt-BR',
+        'sr-Cyrl' => 'sr',
+    ];
+
+    foreach ($map as $old => $new) {
+        if (array_key_exists($old, $gaia)) {
+            $gaia[$new] = $gaia[$old];
+            unset($gaia[$old]);
+        }
+    }
+
+    return $gaia;
+}
 
 function cacheUrl($url, $time = CACHE_EXPIRE)
 {
@@ -104,4 +126,18 @@ function cacheUrl($url, $time = CACHE_EXPIRE)
     $file = file_get_contents($url);
     file_put_contents($cache, $file);
     return $cache;
+}
+
+
+
+/*
+ * Check if $string starts with the $start string
+ *
+ * @param $string string
+ * @param $start string
+ * @return boolean
+ */
+function startsWith($string, $start)
+{
+    return !strncmp($string, $start, strlen($start));
 }

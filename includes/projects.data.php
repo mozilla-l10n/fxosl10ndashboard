@@ -3,8 +3,13 @@ if (!defined('INIT')) die;
 
 // Fetch external data source
 $langchecker        = 'http://l10n.mozilla-community.org/~pascalc/langchecker/';
-$gaia               = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia'))['items'];
-$gaiaStatus         = getGaiaCompletion($gaia);
+$gaia_l10n          = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia'))['items'];
+$gaia_1_1           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia-v1_1'))['items'];
+$gaia_1_2           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia-v1_2'))['items'];
+$gaia_status_l10n   = getGaiaCompletion($gaia_l10n);
+$gaia_status_1_1    = getGaiaCompletion($gaia_1_1);
+$gaia_status_1_2    = getGaiaCompletion($gaia_1_2);
+//~ var_dump($gaia_l10n_status);
 $slogans            = getJsonArray(cacheUrl($langchecker . '?locale=all&website=5&file=firefoxos.lang&json'))['firefoxos.lang'];
 $marketplace_badge  = getJsonArray(cacheUrl($langchecker . '?locale=all&website=5&file=marketplacebadge.lang&json'))['marketplacebadge.lang'];
 $partners_site      = getJsonArray(cacheUrl($langchecker . '?locale=all&website=0&file=firefox/partners/index.lang&json'))['firefox/partners/index.lang'];
@@ -12,26 +17,14 @@ $consumers_site     = getJsonArray(cacheUrl($langchecker . '?locale=all&website=
 $marketplace        = marketplaceStatus(cacheUrl('http://l10n.mozilla-community.org/~flod/mpstats/marketplace.json'));
 
 // Normalize our locale codes to display them coherently
-$tweakLocaleCode = function($code1, $code2) use (&$gaiaStatus, &$marketplace) {
-    if (array_key_exists($code2, $gaiaStatus)) {
-        $gaiaStatus[$code1] = $gaiaStatus[$code2];
-        unset($gaiaStatus[$code2]);
-    }
-
-    if (array_key_exists($code2, $marketplace)) {
-        $marketplace[$code1] = $marketplace[$code2];
-        unset($marketplace[$code2]);
-    }
-};
-
-$tweakLocaleCode('es-ES', 'es');
-$tweakLocaleCode('pt-BR', 'pt');
-$tweakLocaleCode('sr', 'sr-Cyrl');
-$tweakLocaleCode('pa-IN', 'pa');
+$gaia_status_l10n = normalizeGaiaLocales($gaia_status_l10n);
+$gaia_status_1_1  = normalizeGaiaLocales($gaia_status_1_1);
+$gaia_status_1_2  = normalizeGaiaLocales($gaia_status_1_2);
+$marketplace      = normalizeGaiaLocales($marketplace);
 
 $temp_inprogress = $temp_done = [];
 
-foreach ($gaiaStatus as $key => $val) {
+foreach ($gaia_status_l10n as $key => $val) {
     if ($val >= 85) {
         $temp_done[] = $key;
     } elseif ($val >= 80) {
@@ -41,14 +34,37 @@ foreach ($gaiaStatus as $key => $val) {
 
 // This is the list of our projects
 $projects = [
-    'Firefox_os' => [
-        'requested'        => ['ca', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'sr-Latn', 'tr'],
+    'Gaia_l10n' => [
+        'requested'        => array_diff(array_keys($gaia_status_l10n), ['fr', 'sv-SE']),
         'inprogress'       => $temp_inprogress,
         'done'             => $temp_done,
         'owners'           => 'Axel',
         'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia',
         'link_description' => 'L10n Dashboard',
         'automated'        => true,
+        'display_name'     => 'Gaia-l10n',
+    ],
+
+    'Gaia_1_1' => [
+        'requested'        => array_diff(array_keys($gaia_status_1_1), ['fr', 'sv-SE']),
+        'inprogress'       => $temp_inprogress,
+        'done'             => $temp_done,
+        'owners'           => 'Axel',
+        'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia-v1_1',
+        'link_description' => 'L10n Dashboard',
+        'automated'        => true,
+        'display_name'     => 'Gaia 1.1',
+    ],
+
+    'Gaia_1_2' => [
+        'requested'        => array_diff(array_keys($gaia_status_1_2), ['fr', 'sv-SE']),
+        'inprogress'       => $temp_inprogress,
+        'done'             => $temp_done,
+        'owners'           => 'Axel',
+        'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia-v1_2',
+        'link_description' => 'L10n Dashboard',
+        'automated'        => true,
+        'display_name'     => 'Gaia 1.2',
     ],
 
     'marketplace' => [
@@ -122,15 +138,16 @@ $projects = [
     ],
 
     'whatsnew_promo' => [
-        'requested'        => ['es-ES', 'pl'],
+        'requested'        => ['hu', 'pl'],
         'inprogress'       => [],
-        'done'             => [],
+        'done'             => ['hu', 'pl'],
         'owners'           => 'Pascal',
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=896611',
         'link_description' => 'Tracking Bug',
         'automated'        => false,
     ],
 
+/* cancelled ?
     'marketplace_badge' => [
         'requested'        => ['cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'tr'],
         'inprogress'       => dotlangTranslated($marketplace_badge),
@@ -140,7 +157,7 @@ $projects = [
         'link_description' => 'Tracking Bug',
         'automated'        => true,
     ],
-
+*/
     'masterfirefoxos.com' => [
         'requested'        => ['el', 'de', 'hu', 'pt-BR', 'sr'],
         'inprogress'       => ['el', 'de', 'hu', 'pt-BR', 'sr'],
@@ -529,7 +546,7 @@ $localeDetails = [
 ];
 
 // Based on the extracted data and the $projects array, determine our list of locales
-$extractLocales = function() use($projects, $gaiaStatus, $localeDetails) {
+$extractLocales = function() use($projects, $gaia_status_l10n, $localeDetails) {
 
     $locales = [];
     foreach (['requested', 'done', 'inprogress'] as $status) {
@@ -538,7 +555,7 @@ $extractLocales = function() use($projects, $gaiaStatus, $localeDetails) {
         }
     }
 
-    $locales = array_merge($locales, array_keys($gaiaStatus));
+    $locales = array_merge($locales, array_keys($gaia_status_l10n));
     $locales = array_unique($locales);
 
     $priorityLocales = [];

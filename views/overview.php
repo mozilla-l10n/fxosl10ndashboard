@@ -12,8 +12,8 @@ echo '                <th>Locale</th>' . "\n";
 foreach ($projects as $key => $val) {
     $th = ($val['automated'] == true) ? '                <th class="automated">' : '                <th>';
 
-    if ($key == 'Firefox_os') {
-        echo $th .  ucwords(str_replace('_', ' ', $key));
+    if (startsWith($key, 'Gaia')) {
+        echo $th .  $projects[$key]['display_name'];
     } elseif ($key == 'marketplace') {
         echo $th .  ucwords(str_replace('_', ' ', $key)) . '<br><small>fireplace zamboni webpay commbadge rocketfuel</small>';
     } else {
@@ -30,7 +30,7 @@ echo '        <tbody>' . "\n";
 
 foreach ($locales as $locale) {
 
-    $active = function($projects, $key) use ($locale, $gaiaStatus, $marketplace) {
+    $active = function($projects, $key) use ($locale, $gaia_status_l10n, $gaia_status_1_1, $gaia_status_1_2, $marketplace) {
 
         $cell = '';
 
@@ -55,8 +55,18 @@ foreach ($locales as $locale) {
             $class = '';
         }
 
-        if ($key == 'Firefox_os' && array_key_exists($locale, $gaiaStatus)) {
-            $cell = $gaiaStatus[$locale]. '%';
+        if ($key == 'Gaia_l10n' && array_key_exists($locale, $gaia_status_l10n)) {
+            $cell = $gaia_status_l10n[$locale]. '%';
+            $class .= ' showCell';
+        }
+
+        if ($key == 'Gaia_1_1' && array_key_exists($locale, $gaia_status_1_1)) {
+            $cell = $gaia_status_1_1[$locale]. '%';
+            $class .= ' showCell';
+        }
+
+        if ($key == 'Gaia_1_2' && array_key_exists($locale, $gaia_status_1_2)) {
+            $cell = $gaia_status_1_2[$locale]. '%';
             $class .= ' showCell';
         }
 
@@ -83,18 +93,6 @@ foreach ($locales as $locale) {
         }
 
         return '               <td class="' . $class . '">' . $cell . '</td>' . "\n";
-    };
-
-    $tweakLocaleCode = function($code1, $code2) use (&$gaiaStatus, &$marketplace) {
-        if (array_key_exists($code2, $gaiaStatus)) {
-            $gaiaStatus[$code1] = $gaiaStatus[$code2];
-            unset($gaiaStatus[$code2]);
-        }
-
-        if (array_key_exists($code2, $marketplace)) {
-            $marketplace[$code1] = $marketplace[$code2];
-            unset($marketplace[$code2]);
-        }
     };
 
     echo '           <tr>' . "\n";
