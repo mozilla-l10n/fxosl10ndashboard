@@ -34,7 +34,8 @@ foreach ($locales as $locale) {
                      $gaia_status_community,
                      $gaia_status_l10n,
                      $gaia_status_1_1,
-                     $gaia_status_1_2, $marketplace) {
+                     $gaia_status_1_2,
+                     $marketplace) {
         $cell = '';
 
         if (in_array($locale, $projects[$key]['requested'])
@@ -59,22 +60,22 @@ foreach ($locales as $locale) {
         }
 
         if ($key == 'Gaia_l10n' && array_key_exists($locale, $gaia_status_l10n)) {
-            $cell = $gaia_status_l10n[$locale]. '%';
+            $cell = $gaia_status_l10n[$locale]. '&thinsp;%';
             $class .= ' showCell';
         }
 
         if ($key == 'Gaia_1_1' && array_key_exists($locale, $gaia_status_1_1)) {
-            $cell = $gaia_status_1_1[$locale]. '%';
+            $cell = $gaia_status_1_1[$locale]. '&thinsp;%';
             $class .= ' showCell';
         }
 
         if ($key == 'Gaia_1_2' && array_key_exists($locale, $gaia_status_1_2)) {
-            $cell = $gaia_status_1_2[$locale]. '%';
+            $cell = $gaia_status_1_2[$locale]. '&thinsp;%';
             $class .= ' showCell';
         }
 
         if ($key == 'marketplace' && array_key_exists($locale, $marketplace)) {
-            $cell = implode(' / ', $marketplace[$locale]);
+            $cell = implode('&thinsp;/&thinsp;', $marketplace[$locale]);
 
             if ( $marketplace[$locale]['fireplace'] == 100
                 && $marketplace[$locale]['zamboni'] >= 99
