@@ -5,8 +5,8 @@ echo '    <table class="table sortable">' . "\n";
 echo '        <caption>L10n Mini Dashboard for Firefox OS</caption>' . "\n";
 echo '        <thead>' . "\n";
 echo '            <tr>' . "\n";
-echo '                <th>Priority</th>' . "\n";
-echo '                <th>Locale</th>' . "\n";
+echo '                <th class="automated">Priority</th>' . "\n";
+echo '                <th class="automated">Locale</th>' . "\n";
 
 
 foreach ($projects as $key => $val) {
