@@ -28,6 +28,10 @@ $marketplace           = normalizeGaiaLocales($marketplace);
 
 $temp_inprogress = $temp_done = [];
 
+// locales in shipping dashboards dthat we don't actually ship
+$postponed_locales = ['bn-BD', 'fr', 'sv-SE', 'zh-TW', 'zh-CN'];
+
+
 foreach ($gaia_status_l10n as $key => $val) {
     if ($val >= 85) {
         $temp_done[] = $key;
@@ -65,7 +69,7 @@ $projects = [
     ],
 
     'Gaia_1_1' => [
-        'requested'        => array_diff(array_keys($gaia_status_1_1), ['fr', 'sv-SE']),
+        'requested'        => array_diff(array_keys($gaia_status_1_1), $postponed_locales),
         'inprogress'       => $repo_status($gaia_status_1_1)['inprogress'],
         'done'             => $repo_status($gaia_status_1_1)['done'],
         'owners'           => 'Axel',
@@ -76,7 +80,7 @@ $projects = [
     ],
 
     'Gaia_1_2' => [
-        'requested'        => array_diff(array_keys($gaia_status_1_2), ['fr', 'sv-SE']),
+        'requested'        => array_diff(array_keys($gaia_status_1_2), $postponed_locales),
         'inprogress'       => $repo_status($gaia_status_1_2)['inprogress'],
         'done'             => $repo_status($gaia_status_1_2)['done'],
         'owners'           => 'Axel',
@@ -203,7 +207,7 @@ $localeDetails = [];
 foreach($gaia_locales as $locale) {
     $localeDetails[$locale]['comment'] = '';
     $localeDetails[$locale]['shipped'] = false;
-    if (in_array($locale, array_diff(array_keys($gaia_status_1_2), ['fr', 'sv-SE']))) {
+    if (in_array($locale, array_diff(array_keys($gaia_status_1_2), $postponed_locales))) {
         $localeDetails[$locale]['priority'] = 1;
     } elseif (in_array($locale, array_keys($gaia_status_community))) {
         $localeDetails[$locale]['priority'] = 2;
