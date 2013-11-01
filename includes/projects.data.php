@@ -3,13 +3,16 @@ if (!defined('INIT')) die;
 
 // Fetch external data source
 $langchecker        = 'http://l10n.mozilla-community.org/~pascalc/langchecker/';
-$gaia_l10n          = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia'))['items'];
-$gaia_1_1           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia-v1_1'))['items'];
-$gaia_1_2           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community&tree=gaia-v1_2'))['items'];
-$gaia_status_l10n   = getGaiaCompletion($gaia_l10n);
-$gaia_status_1_1    = getGaiaCompletion($gaia_1_1);
-$gaia_status_1_2    = getGaiaCompletion($gaia_1_2);
-//~ var_dump($gaia_l10n_status);
+$gaia_community     = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community'))['items'];
+$gaia_l10n          = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia&tree=gaia-community'))['items'];
+$gaia_1_1           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-v1_1'))['items'];
+$gaia_1_2           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-v1_2'))['items'];
+
+$gaia_status_community = getGaiaCompletion($gaia_community);
+$gaia_status_l10n      = getGaiaCompletion($gaia_l10n);
+$gaia_status_1_1       = getGaiaCompletion($gaia_1_1);
+$gaia_status_1_2       = getGaiaCompletion($gaia_1_2);
+
 $slogans            = getJsonArray(cacheUrl($langchecker . '?locale=all&website=5&file=firefoxos.lang&json'))['firefoxos.lang'];
 $marketplace_badge  = getJsonArray(cacheUrl($langchecker . '?locale=all&website=5&file=marketplacebadge.lang&json'))['marketplacebadge.lang'];
 $partners_site      = getJsonArray(cacheUrl($langchecker . '?locale=all&website=0&file=firefox/partners/index.lang&json'))['firefox/partners/index.lang'];
@@ -17,10 +20,11 @@ $consumers_site     = getJsonArray(cacheUrl($langchecker . '?locale=all&website=
 $marketplace        = marketplaceStatus(cacheUrl('http://l10n.mozilla-community.org/~flod/mpstats/marketplace.json'));
 
 // Normalize our locale codes to display them coherently
-$gaia_status_l10n = normalizeGaiaLocales($gaia_status_l10n);
-$gaia_status_1_1  = normalizeGaiaLocales($gaia_status_1_1);
-$gaia_status_1_2  = normalizeGaiaLocales($gaia_status_1_2);
-$marketplace      = normalizeGaiaLocales($marketplace);
+$gaia_status_community = normalizeGaiaLocales($gaia_status_community);
+$gaia_status_l10n      = normalizeGaiaLocales($gaia_status_l10n);
+$gaia_status_1_1       = normalizeGaiaLocales($gaia_status_1_1);
+$gaia_status_1_2       = normalizeGaiaLocales($gaia_status_1_2);
+$marketplace           = normalizeGaiaLocales($marketplace);
 
 $temp_inprogress = $temp_done = [];
 
@@ -32,23 +36,38 @@ foreach ($gaia_status_l10n as $key => $val) {
     }
 }
 
+$repo_status = function($repo) {
+    $status = [
+        'done'       => [],
+        'inprogress' => [],
+    ];
+    foreach ($repo as $locale => $completion) {
+        if ($completion >= 85) {
+            $status['done'][] = $locale;
+        } elseif ($completion >= 80) {
+            $status['inprogress'][] = $locale;
+        }
+    }
+    return $status;
+};
+
 // This is the list of our projects
 $projects = [
     'Gaia_l10n' => [
-        'requested'        => array_diff(array_keys($gaia_status_l10n), ['fr', 'sv-SE']),
-        'inprogress'       => $temp_inprogress,
-        'done'             => $temp_done,
+        'requested'        => array_diff(array_keys($gaia_status_l10n), array_keys($gaia_status_community)),
+        'inprogress'       => $repo_status($gaia_status_l10n)['inprogress'],
+        'done'             => $repo_status($gaia_status_l10n)['done'],
         'owners'           => 'Axel',
         'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia',
         'link_description' => 'L10n Dashboard',
         'automated'        => true,
-        'display_name'     => 'Gaia-l10n',
+        'display_name'     => 'Gaia-l10n + community',
     ],
 
     'Gaia_1_1' => [
         'requested'        => array_diff(array_keys($gaia_status_1_1), ['fr', 'sv-SE']),
-        'inprogress'       => $temp_inprogress,
-        'done'             => $temp_done,
+        'inprogress'       => $repo_status($gaia_status_1_1)['inprogress'],
+        'done'             => $repo_status($gaia_status_1_1)['done'],
         'owners'           => 'Axel',
         'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia-v1_1',
         'link_description' => 'L10n Dashboard',
@@ -58,8 +77,8 @@ $projects = [
 
     'Gaia_1_2' => [
         'requested'        => array_diff(array_keys($gaia_status_1_2), ['fr', 'sv-SE']),
-        'inprogress'       => $temp_inprogress,
-        'done'             => $temp_done,
+        'inprogress'       => $repo_status($gaia_status_1_2)['inprogress'],
+        'done'             => $repo_status($gaia_status_1_2)['done'],
         'owners'           => 'Axel',
         'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia-v1_2',
         'link_description' => 'L10n Dashboard',
@@ -169,384 +188,35 @@ $projects = [
     ],
 ];
 
-$localeDetails = [
-    'ar' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'as' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ast' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'be' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'bg' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'bn-BD' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'bn-IN' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'bs' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ca' =>
-    [
-        'priority' => 2,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'cs' =>
-    [
-        'priority' => 1,
-        'shipped' => false,
-        'comment' => ''
-    ],
+/* define locales and priorities */
+$gaia_locales = array_unique(array_merge(
+    array_keys($gaia_status_community),
+    array_keys($gaia_status_l10n),
+    array_keys($gaia_status_1_1),
+    array_keys($gaia_status_1_2)
+));
 
-    'cy' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'da' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'de' =>
-    [
-        'priority' => 1,
-        'shipped' => true,
-        'comment' => ''
-    ],
-    'el' =>
-    [
-        'priority' => 2,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'eo' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'es-ES' =>
-    [
-        'priority' => 1,
-        'shipped' => true,
-        'comment' => ''
-    ],
-    'et' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'eu' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ff' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'fr' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'fy-NL' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ga-IE' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'gd' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'gl' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'gu' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'he' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'hi-IN' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'hr' =>
-    [
-        'priority' => 1,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ht' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'hu' =>
-    [
-        'priority' => 1,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'id' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'it' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ja' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'km' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'kn' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ko' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'lij' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'mk' =>
-    [
-        'priority' => 3,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ml' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ms' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ne-NP' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'nl' =>
-    [
-        'priority' => 2,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'or' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'pa-IN' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'pl' =>
-    [
-        'priority' => 1,
-        'shipped' => true,
-        'comment' => ''
-    ],
-    'pt-BR' =>
-    [
-        'priority' => 1,
-        'shipped' => true,
-        'comment' => ''
-    ],
-    'ro' =>
-    [
-        'priority' => 1,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ru' =>
-    [
-        'priority' => 2,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'si' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'sk' =>
-    [
-        'priority' => 2,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'sl' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'sq' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'sr' =>
-    [
-        'priority' => 2,
-        'shipped' => false,
-        'comment' => 'sr or sr-Cyrl is Serbian Cyrillic '
-    ],
-    'sr-Latn' =>
-    [
-        'priority' => 2,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'sv-SE' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'te' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'th' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'tr' =>
-    [
-        'priority' => 2,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'ur' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'vi' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'zh-CN' =>
-    [
-        'priority' => 3,
-        'shipped' => false,
-        'comment' => ''
-    ],
-    'zh-TW' =>
-    [
-        'priority' => 4,
-        'shipped' => false,
-        'comment' => ''
-    ],
-];
+sort($gaia_locales);
+$localeDetails = [];
+
+// populate $gaia_locale status automatically
+foreach($gaia_locales as $locale) {
+    $localeDetails[$locale]['comment'] = '';
+    $localeDetails[$locale]['shipped'] = false;
+    if (in_array($locale, array_diff(array_keys($gaia_status_1_2), ['fr', 'sv-SE']))) {
+        $localeDetails[$locale]['priority'] = 1;
+    } elseif (in_array($locale, array_keys($gaia_status_community))) {
+        $localeDetails[$locale]['priority'] = 2;
+    } else {
+        $localeDetails[$locale]['priority'] = 3;
+    }
+}
+
+// deal with exceptions in $gaia_locales
+
 
 // Based on the extracted data and the $projects array, determine our list of locales
-$extractLocales = function() use($projects, $gaia_status_l10n, $localeDetails) {
+$extractLocales = function() use ($projects, $gaia_locales, $localeDetails) {
 
     $locales = [];
     foreach (['requested', 'done', 'inprogress'] as $status) {
@@ -554,8 +224,7 @@ $extractLocales = function() use($projects, $gaia_status_l10n, $localeDetails) {
             $locales = array_merge($locales, $projects[$projectName][$status]);
         }
     }
-
-    $locales = array_merge($locales, array_keys($gaia_status_l10n));
+    $locales = array_merge($locales, $gaia_locales);
     $locales = array_unique($locales);
 
     $priorityLocales = [];
@@ -574,6 +243,14 @@ $extractLocales = function() use($projects, $gaia_status_l10n, $localeDetails) {
 
 $locales = $extractLocales();
 
+// add locales that don't work on Gaia but work on webparts
+foreach ($locales as $locale) {
+    if (!array_key_exists($locale, $localeDetails)) {
+        $localeDetails[$locale]['comment'] = '';
+        $localeDetails[$locale]['shipped'] = false;
+        $localeDetails[$locale]['priority'] = 4;
+    }
+}
 
 $locale_status = function($locale, $localeDetails) {
     return ($localeDetails[$locale]['shipped'] == true)

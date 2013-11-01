@@ -27,11 +27,14 @@ echo '                <th>Comments</th>' . "\n";
 echo '            </tr>' . "\n";
 echo '        </thead>' . "\n";
 echo '        <tbody>' . "\n";
-
 foreach ($locales as $locale) {
 
-    $active = function($projects, $key) use ($locale, $gaia_status_l10n, $gaia_status_1_1, $gaia_status_1_2, $marketplace) {
-
+    $active = function($projects, $key)
+                use ($locale,
+                     $gaia_status_community,
+                     $gaia_status_l10n,
+                     $gaia_status_1_1,
+                     $gaia_status_1_2, $marketplace) {
         $cell = '';
 
         if (in_array($locale, $projects[$key]['requested'])
