@@ -65,7 +65,7 @@ $projects = [
         'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia',
         'link_description' => 'L10n Dashboard',
         'automated'        => true,
-        'display_name'     => 'Gaia-l10n + community',
+        'display_name'     => 'Gaia-l10n<br>+community',
     ],
 
     'Gaia_1_1' => [
@@ -91,7 +91,7 @@ $projects = [
     ],
 
     'marketplace' => [
-        'requested'        => ['cs', 'de', 'el', 'es-ES', 'pl', 'pt-BR'],
+        'requested'        => ['ca', 'cs', 'de', 'el', 'es-ES', 'hr', 'it', 'mk', 'nl', 'pl', 'pt-BR', 'ro', 'sr', 'sr-Latn', 'tr'],
         'inprogress'       => [],
         'done'             => [],
         'owners'           => 'Peiying',
@@ -101,7 +101,7 @@ $projects = [
     ],
 
     'partners_site' => [
-        'requested'        => ['de', 'es-ES', 'it', 'ja', 'ko', 'pl', 'pt-BR', 'zh-CN', 'zh-TW'],
+        'requested'        => ['ca', 'de', 'el', 'es-ES', 'it', 'ja', 'ko', 'pl', 'pt-BR', 'ro', 'zh-CN', 'zh-TW'],
         'inprogress'       => dotlangTranslated($partners_site),
         'done'             => dotlangActivated($partners_site),
         'owners'           => 'Pascal',
@@ -111,7 +111,7 @@ $projects = [
     ],
 
     'consumers_site' => [
-        'requested'        => ['cs', 'de', 'el', 'es-ES', 'hu', 'pl', 'pt-BR', 'sr'],
+        'requested'        => ['cs', 'de', 'el', 'es-ES', 'hu', 'it', 'pl', 'pt-BR', 'ro', 'sr'],
         'inprogress'       => dotlangTranslated($consumers_site),
         'done'             => dotlangActivated($consumers_site),
         'owners'           => 'Pascal',
@@ -132,8 +132,8 @@ $projects = [
 
     'screenshots' => [
         'requested'        => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
-        'inprogress'       => ['cs', 'de', 'el', 'hr', 'hu', 'pt-BR', 'ro'],
-        'done'             => ['es-ES', 'pl'],
+        'inprogress'       => [],
+        'done'             => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'pl', 'pt-BR', 'ro', 'sr'],
         'owners'           => 'Peiying',
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=902571',
         'link_description' => 'Tracking Bug',
@@ -142,8 +142,8 @@ $projects = [
 
     'consumer_headlines' => [
         'requested'        => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sq', 'sr'],
-        'inprogress'       => ['hr'],
-        'done'             => ['bg', 'cs', 'de', 'ro'],
+        'inprogress'       => [],
+        'done'             => ['bg', 'cs', 'de', 'el', 'es-ES', 'hr', 'hu', 'mk', 'pl', 'pt-BR', 'ro', 'sr'],
         'owners'           => 'Peiying',
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=893094',
         'link_description' => 'Tracking Bug',
@@ -151,16 +151,16 @@ $projects = [
     ],
 
     'consumer_docs' => [
-        'requested'        => ['bg', 'cs', 'de', 'el', 'hr', 'hu', 'mk', 'pt-BR', 'ro', 'sr'],
-        'inprogress'       => ['hu', 'sr'],
-        'done'             => ['cs', 'de', 'el', 'hr', 'mk', 'ro'],
+        'requested'        => ['bg', 'cs', 'de', 'el', 'hr', 'hu', 'mk', 'pt-BR', 'ro', 'sq', 'sr'],
+        'inprogress'       => [],
+        'done'             => ['bg', 'cs', 'de', 'el', 'hr', 'hu', 'mk', 'pt-BR', 'ro', 'sq', 'sr'],
         'owners'           => 'Peiying',
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=902056',
         'link_description' => 'Tracking Bug',
         'automated'        => false,
     ],
 
-    'whatsnew_promo' => [
+    'Desktop_whatsnew_promo' => [
         'requested'        => ['hu', 'pl'],
         'inprogress'       => [],
         'done'             => ['hu', 'pl'],
@@ -181,10 +181,10 @@ $projects = [
         'automated'        => true,
     ],
 */
-    'masterfirefoxos.com' => [
-        'requested'        => ['el', 'de', 'hu', 'pt-BR', 'sr'],
-        'inprogress'       => ['el', 'de', 'hu', 'pt-BR', 'sr'],
-        'done'             => [],
+    'masterfirefoxos' => [
+        'requested'        => ['cs', 'de', 'el', 'es-ES', 'de', 'hr', 'hu', 'pt-BR', 'sr'],
+        'inprogress'       => ['cs', 'de', 'el', 'hr', 'hu', 'sr'],
+        'done'             => ['es-ES', 'pt-BR'],
         'owners'           => 'Peiying',
         'link'             => 'https://bugzilla.mozilla.org/show_bug.cgi?id=904896',
         'link_description' => 'Tracking Bug',
@@ -217,7 +217,10 @@ foreach($gaia_locales as $locale) {
 }
 
 // deal with exceptions in $gaia_locales
-
+$shipped = ['de', 'es-ES', 'pl', 'pt-BR'];
+foreach($shipped as $val) {
+    $localeDetails[$val]['shipped'] = true;
+}
 
 // Based on the extracted data and the $projects array, determine our list of locales
 $extractLocales = function() use ($projects, $gaia_locales, $localeDetails) {
