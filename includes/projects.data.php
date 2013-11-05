@@ -29,7 +29,7 @@ $marketplace           = normalizeGaiaLocales($marketplace);
 $temp_inprogress = $temp_done = [];
 
 // locales in shipping dashboards dthat we don't actually ship
-$postponed_locales = ['bn-BD', 'fr', 'sv-SE', 'zh-TW', 'zh-CN'];
+$postponed_locales = ['fr', 'sv-SE', ];
 
 
 foreach ($gaia_status_l10n as $key => $val) {
