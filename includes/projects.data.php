@@ -233,7 +233,7 @@ foreach($gaia_locales as $locale) {
 }
 
 // deal with exceptions in $gaia_locales
-$shipped = ['de', 'es-ES', 'pl', 'pt-BR'];
+$shipped = ['de', 'el', 'es-ES', 'hu', 'it', 'pl', 'pt-BR', 'sr'];
 foreach($shipped as $val) {
     $localeDetails[$val]['shipped'] = true;
 }
