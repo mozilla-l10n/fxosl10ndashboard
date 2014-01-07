@@ -7,11 +7,13 @@ $gaia_community     = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/a
 $gaia_l10n          = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia&tree=gaia-community'))['items'];
 $gaia_1_1           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-v1_1'))['items'];
 $gaia_1_2           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-v1_2'))['items'];
+$gaia_1_3           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-v1_3'))['items'];
 
 $gaia_status_community = getGaiaCompletion($gaia_community);
 $gaia_status_l10n      = getGaiaCompletion($gaia_l10n);
 $gaia_status_1_1       = getGaiaCompletion($gaia_1_1);
 $gaia_status_1_2       = getGaiaCompletion($gaia_1_2);
+$gaia_status_1_3       = getGaiaCompletion($gaia_1_3);
 
 $slogans            = getJsonArray(cacheUrl($langchecker . '?locale=all&website=5&file=firefoxos.lang&json'))['firefoxos.lang'];
 $marketplace_badge  = getJsonArray(cacheUrl($langchecker . '?locale=all&website=5&file=marketplacebadge.lang&json'))['marketplacebadge.lang'];
@@ -24,6 +26,7 @@ $gaia_status_community = normalizeGaiaLocales($gaia_status_community);
 $gaia_status_l10n      = normalizeGaiaLocales($gaia_status_l10n);
 $gaia_status_1_1       = normalizeGaiaLocales($gaia_status_1_1);
 $gaia_status_1_2       = normalizeGaiaLocales($gaia_status_1_2);
+$gaia_status_1_3       = normalizeGaiaLocales($gaia_status_1_3);
 $marketplace           = normalizeGaiaLocales($marketplace);
 
 $temp_inprogress = $temp_done = [];
@@ -85,6 +88,17 @@ $projects = [
         'done'             => $repo_status($gaia_status_1_2)['done'],
         'owners'           => 'Axel',
         'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia-v1_2',
+        'link_description' => 'L10n Dashboard',
+        'automated'        => true,
+        'display_name'     => 'Gaia 1.2',
+    ],
+
+    'Gaia_1_3' => [
+        'requested'        => array_diff(array_keys($gaia_status_1_3), $postponed_locales),
+        'inprogress'       => $repo_status($gaia_status_1_3)['inprogress'],
+        'done'             => $repo_status($gaia_status_1_3)['done'],
+        'owners'           => 'Axel',
+        'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia-v1_3',
         'link_description' => 'L10n Dashboard',
         'automated'        => true,
         'display_name'     => 'Gaia 1.2',
@@ -191,13 +205,15 @@ $projects = [
         'automated'        => false,
     ],
 ];
+//~ echo '<pre>';var_dump($projects['partners_site']);echo '<pre>';
 
 /* define locales and priorities */
 $gaia_locales = array_unique(array_merge(
     array_keys($gaia_status_community),
     array_keys($gaia_status_l10n),
     array_keys($gaia_status_1_1),
-    array_keys($gaia_status_1_2)
+    array_keys($gaia_status_1_2),
+    array_keys($gaia_status_1_3)
 ));
 
 sort($gaia_locales);

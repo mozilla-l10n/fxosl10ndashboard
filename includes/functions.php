@@ -81,7 +81,7 @@ function getGaiaCompletion($gaia)
         if (array_key_exists('tree', $value)
             && in_array(
                 $value['tree'],
-                ['gaia-community', 'gaia', 'gaia-v1_1', 'gaia-v1_2']
+                ['gaia-community', 'gaia', 'gaia-v1_1', 'gaia-v1_2', 'gaia-v1_3']
             )
         ) {
             $completion[$value['locale']] = $value['completion'];

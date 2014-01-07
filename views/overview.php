@@ -35,6 +35,7 @@ foreach ($locales as $locale) {
                      $gaia_status_l10n,
                      $gaia_status_1_1,
                      $gaia_status_1_2,
+                     $gaia_status_1_3,
                      $marketplace) {
         $cell = '';
 
@@ -71,6 +72,11 @@ foreach ($locales as $locale) {
 
         if ($key == 'Gaia_1_2' && array_key_exists($locale, $gaia_status_1_2)) {
             $cell = $gaia_status_1_2[$locale]. '&thinsp;%';
+            $class .= ' showCell';
+        }
+
+        if ($key == 'Gaia_1_3' && array_key_exists($locale, $gaia_status_1_3)) {
+            $cell = $gaia_status_1_3[$locale]. '&thinsp;%';
             $class .= ' showCell';
         }
 
