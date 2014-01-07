@@ -101,7 +101,7 @@ $projects = [
         'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia-v1_3',
         'link_description' => 'L10n Dashboard',
         'automated'        => true,
-        'display_name'     => 'Gaia 1.2',
+        'display_name'     => 'Gaia 1.3',
     ],
 
     'marketplace' => [
