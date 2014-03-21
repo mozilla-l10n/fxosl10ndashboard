@@ -33,8 +33,6 @@ foreach ($locales as $locale) {
                 use ($locale,
                      $gaia_status_community,
                      $gaia_status_l10n,
-                     $gaia_status_1_1,
-                     $gaia_status_1_2,
                      $gaia_status_1_3,
                      $marketplace) {
         $cell = '';
@@ -62,16 +60,6 @@ foreach ($locales as $locale) {
 
         if ($key == 'Gaia_l10n' && array_key_exists($locale, $gaia_status_l10n)) {
             $cell = $gaia_status_l10n[$locale]. '&thinsp;%';
-            $class .= ' showCell';
-        }
-
-        if ($key == 'Gaia_1_1' && array_key_exists($locale, $gaia_status_1_1)) {
-            $cell = $gaia_status_1_1[$locale]. '&thinsp;%';
-            $class .= ' showCell';
-        }
-
-        if ($key == 'Gaia_1_2' && array_key_exists($locale, $gaia_status_1_2)) {
-            $cell = $gaia_status_1_2[$locale]. '&thinsp;%';
             $class .= ' showCell';
         }
 
