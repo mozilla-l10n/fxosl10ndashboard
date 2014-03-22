@@ -99,7 +99,6 @@ function normalizeGaiaLocales($gaia)
     $map = [
         'es'      => 'es-ES',
         'pa'      => 'pa-IN',
-        'pt'      => 'pt-BR',
         'sr-Cyrl' => 'sr',
     ];
 
