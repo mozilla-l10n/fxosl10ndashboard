@@ -5,27 +5,21 @@ if (!defined('INIT')) die;
 $langchecker        = 'http://l10n.mozilla-community.org/~pascalc/langchecker/';
 $gaia_community     = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-community'))['items'];
 $gaia_l10n          = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia&tree=gaia-community'))['items'];
-$gaia_1_1           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-v1_1'))['items'];
-$gaia_1_2           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-v1_2'))['items'];
 $gaia_1_3           = getJsonArray(cacheUrl('https://l10n.mozilla.org/shipping/api/status?tree=gaia-v1_3'))['items'];
 
 $gaia_status_community = getGaiaCompletion($gaia_community);
 $gaia_status_l10n      = getGaiaCompletion($gaia_l10n);
-$gaia_status_1_1       = getGaiaCompletion($gaia_1_1);
-$gaia_status_1_2       = getGaiaCompletion($gaia_1_2);
 $gaia_status_1_3       = getGaiaCompletion($gaia_1_3);
 
 $slogans            = getJsonArray(cacheUrl($langchecker . '?locale=all&website=5&file=firefoxos.lang&json'))['firefoxos.lang'];
 $marketplace_badge  = getJsonArray(cacheUrl($langchecker . '?locale=all&website=5&file=marketplacebadge.lang&json'))['marketplacebadge.lang'];
 $partners_site      = getJsonArray(cacheUrl($langchecker . '?locale=all&website=0&file=firefox/partners/index.lang&json'))['firefox/partners/index.lang'];
 $consumers_site     = getJsonArray(cacheUrl($langchecker . '?locale=all&website=0&file=firefox/os/index.lang&json'))['firefox/os/index.lang'];
-$marketplace        = marketplaceStatus(cacheUrl('http://l10n.mozilla-community.org/~flod/mpstats/marketplace.json'));
+$marketplace        = marketplaceStatus(cacheUrl('http://l10n.mozilla-community.org/~flod/webstatus/webstatus.json'));
 
 // Normalize our locale codes to display them coherently
 $gaia_status_community = normalizeGaiaLocales($gaia_status_community);
 $gaia_status_l10n      = normalizeGaiaLocales($gaia_status_l10n);
-$gaia_status_1_1       = normalizeGaiaLocales($gaia_status_1_1);
-$gaia_status_1_2       = normalizeGaiaLocales($gaia_status_1_2);
 $gaia_status_1_3       = normalizeGaiaLocales($gaia_status_1_3);
 $marketplace           = normalizeGaiaLocales($marketplace);
 
@@ -69,28 +63,6 @@ $projects = [
         'link_description' => 'L10n Dashboard',
         'automated'        => true,
         'display_name'     => 'Gaia-l10n<br>+community',
-    ],
-
-    'Gaia_1_1' => [
-        'requested'        => array_diff(array_keys($gaia_status_1_1), $postponed_locales),
-        'inprogress'       => $repo_status($gaia_status_1_1)['inprogress'],
-        'done'             => $repo_status($gaia_status_1_1)['done'],
-        'owners'           => 'Axel',
-        'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia-v1_1',
-        'link_description' => 'L10n Dashboard',
-        'automated'        => true,
-        'display_name'     => 'Gaia 1.1',
-    ],
-
-    'Gaia_1_2' => [
-        'requested'        => array_diff(array_keys($gaia_status_1_2), $postponed_locales),
-        'inprogress'       => $repo_status($gaia_status_1_2)['inprogress'],
-        'done'             => $repo_status($gaia_status_1_2)['done'],
-        'owners'           => 'Axel',
-        'link'             => 'https://l10n.mozilla.org/shipping/dashboard?tree=gaia-v1_2',
-        'link_description' => 'L10n Dashboard',
-        'automated'        => true,
-        'display_name'     => 'Gaia 1.2',
     ],
 
     'Gaia_1_3' => [
@@ -211,8 +183,6 @@ $projects = [
 $gaia_locales = array_unique(array_merge(
     array_keys($gaia_status_community),
     array_keys($gaia_status_l10n),
-    array_keys($gaia_status_1_1),
-    array_keys($gaia_status_1_2),
     array_keys($gaia_status_1_3)
 ));
 
@@ -223,7 +193,7 @@ $localeDetails = [];
 foreach($gaia_locales as $locale) {
     $localeDetails[$locale]['comment'] = '';
     $localeDetails[$locale]['shipped'] = false;
-    if (in_array($locale, array_diff(array_keys($gaia_status_1_2), $postponed_locales))) {
+    if (in_array($locale, array_diff(array_keys($gaia_status_1_3), $postponed_locales))) {
         $localeDetails[$locale]['priority'] = 1;
     } elseif (in_array($locale, array_keys($gaia_status_community))) {
         $localeDetails[$locale]['priority'] = 2;
